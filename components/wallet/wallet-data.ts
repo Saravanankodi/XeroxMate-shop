@@ -1,0 +1,56 @@
+import type { WalletTransaction } from "./types";
+
+export const walletTransactions: WalletTransaction[] = [
+  {
+    id: "txn-2839",
+    kind: "payment",
+    title: "Payment collected",
+    orderId: "OMX-2839",
+    method: "Cash",
+    status: "Verified Handover",
+    statusTone: "verified",
+    customer: "Akash K",
+    description:
+      "Collected cash for order OMX-2839 (1 page B&W laser)",
+    date: "11 Oct 2026, 06:10 PM",
+    amount: "0.77",
+  },
+  {
+    id: "txn-10022-cash",
+    kind: "payment",
+    title: "Payment collected",
+    orderId: "OMX-10022",
+    method: "Cash",
+    status: "Completed",
+    statusTone: "completed",
+    customer: "Sneha R",
+    description:
+      "Collected cash for order OMX-10022 (Spiral Binding notes)",
+    date: "07 Oct 2026, 11:49 AM",
+    amount: "1.12",
+  },
+  {
+    id: "txn-10022-settlement",
+    kind: "settlement",
+    title: "Print Settlement",
+    orderId: "OMX-10022",
+    method: "UPI / Razorpay",
+    status: "Auto-Settled",
+    statusTone: "auto",
+    description: "Order OMX-10022 completed",
+    date: "07 Oct 2026, 11:10 AM",
+    amount: "1.13",
+  },
+  {
+    id: "txn-10021-settlement",
+    kind: "settlement",
+    title: "Print Settlement",
+    orderId: "OMX-10021",
+    method: "PhonePe UPI",
+    status: "Auto-Settled",
+    statusTone: "auto",
+    description: "B&W Assignment Multi-page output",
+    date: "07 Oct 2026, 11:07 AM",
+    amount: "1.50",
+  },
+];

@@ -24,7 +24,7 @@ const menuItems = [
   {
     name: "Wallet & Settlements",
     icon: Wallet,
-    href: "#wallet",
+    href: "/wallet",
   },
   {
     name: "Print Services & Pricing",
@@ -34,7 +34,7 @@ const menuItems = [
   {
     name: "Customer Reviews",
     icon: Star,
-    href: "#reviews",
+    href: "/reviews",
   },
   {
     name: "Shop Profile & Hours",
