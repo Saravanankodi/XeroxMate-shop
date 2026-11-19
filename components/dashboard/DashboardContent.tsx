@@ -5,6 +5,7 @@ import LiveOrders from "./LiveOrders";
 import PayoutBanner from "./PayoutBanner";
 import PickupTokenDesk from "./PickupTokenDesk";
 import QuickRateCard from "./QuickRateCard";
+import ShopOnboarding from "./ShopOnboarding";
 import StatsCards from "./StatsCards";
 
 import Header from "../layout/Header";
@@ -14,16 +15,16 @@ export default function DashboardContent() {
   const { openSidebar } = useMobileNav();
 
   return (
-    <div className="mx-auto w-full max-w-[1280px] space-y-4 px-4 py-4 sm:space-y-5 sm:px-6 sm:py-5 xl:space-y-6 xl:py-4 2xl:px-8 2xl:py-6">
+    <div className="mx-auto w-full max-w-7xl space-y-3 p-3 sm:px-2 sm:py-3 xl:space-y-4 xl:py-3 2xl:px-5 2xl:py-4">
       <Header onMenuClick={openSidebar} />
 
-      <PayoutBanner />
+      {/* <ShopOnboarding /> */}
 
       <StatsCards />
 
       <LiveOrders />
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:gap-6">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:gap-6 mt-6">
         <QuickRateCard />
 
         <DailySettlement />

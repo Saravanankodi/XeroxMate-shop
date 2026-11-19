@@ -38,7 +38,7 @@ export default function StatCard({
   const Icon = icons[icon];
 
   return (
-    <Card className="flex h-full min-w-0 flex-col justify-between gap-4 p-4">
+    <Card className="flex h-full min-w-0 flex-col justify-between px-4 py-3">
       <div className="flex items-center justify-between gap-3">
         <p className="font-heading text-sm font-semibold leading-5 text-muted">
           {title}
@@ -53,7 +53,7 @@ export default function StatCard({
 
       <div className="flex items-end justify-between gap-2">
         <span
-          className={`text-4xl font-bold leading-[44px] ${
+          className={`text-2xl sm:text-4xl font-bold leading-11 ${
             valueFont === "heading" ? "font-heading" : "font-display"
           } ${valueClassName}`}
         >
@@ -63,7 +63,7 @@ export default function StatCard({
         {badge}
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+      <div className="flex flex-wrap items-center justify-between sm:gap-x-3 sm:gap-y-1 sm:pt-2">
         {footer}
       </div>
     </Card>

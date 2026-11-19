@@ -82,7 +82,7 @@ export default function ShopProfileForm() {
       ref={formRef}
       onChange={markDirty}
       onSubmit={handleSubmit}
-      className="mx-auto w-full max-w-[1440px] px-4 pb-4 pt-4 sm:px-6 sm:pb-5 sm:pt-5 xl:px-8 xl:pt-6"
+      className="mx-auto w-full max-w-7xl space-y-2 p-2 sm:px-2 sm:py-3 xl:space-y-2.5 xl:py-3 2xl:px-5 2xl:py-4"
     >
       <ShopProfileHeader dirty={dirty} />
 

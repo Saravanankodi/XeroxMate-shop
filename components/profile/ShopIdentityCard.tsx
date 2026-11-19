@@ -21,7 +21,7 @@ export default function ShopIdentityCard() {
         action={
           <Badge
             tone="success"
-            className="gap-1.5 px-3 py-1 text-[11px] leading-[14px] text-[#00201D]"
+            className="gap-1.5 px-3 py-1 text-[11px] leading-3.5 text-[#00201D]"
           >
             <BadgeCheck size={16} className="text-[#00312C]" />
             Verified Partner
@@ -29,8 +29,8 @@ export default function ShopIdentityCard() {
         }
       />
 
-      <div className="mt-4 space-y-4">
-        <div className="grid gap-4 sm:grid-cols-2">
+      <div className="mt-4 2xl:mt-6 space-y-4 2xl:space-y-5">
+        <div className="grid gap-4 sm:grid-cols-2 ">
           <ProfileField
             label="Shop Name"
             required

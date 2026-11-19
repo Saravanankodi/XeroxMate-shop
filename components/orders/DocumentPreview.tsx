@@ -21,14 +21,8 @@ export default function DocumentPreview({
   return (
     <SectionCard
       icon={FileImage}
-      title="Document Ingest & Job Preview"
+      title="Document Details & Job Preview"
       subtitle="1 document queued for production"
-      badge={
-        <Badge tone="success">
-          <ShieldCheck size={12} />
-          Preflight Passed (300 DPI)
-        </Badge>
-      }
     >
       <div className="flex flex-col gap-3 rounded-xl bg-lilac p-3 sm:flex-row sm:items-center">
         <div className="flex min-w-0 flex-1 items-center gap-3">
@@ -40,8 +34,9 @@ export default function DocumentPreview({
             <p className="text-[11px] font-bold uppercase tracking-wide text-navy">
               {document.kind}
               <span className="ml-2 font-medium normal-case tracking-normal text-muted">
-                · {document.sheets}{" "}
-                {document.sheets === 1 ? "Sheet" : "Sheets"}
+                {/* · {document.sheets}{" "}
+                {document.sheets === 1 ? "Sheet" : "Sheets"} */}
+                <Badge tone="info">Document 1</Badge>
               </span>
             </p>
 
@@ -69,7 +64,7 @@ export default function DocumentPreview({
 
           <Button variant="primary" size="sm">
             <Printer size={14} />
-            Spooler
+            Print
           </Button>
         </div>
       </div>

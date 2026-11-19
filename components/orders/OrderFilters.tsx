@@ -42,7 +42,7 @@ export default function OrderFilters({
                 onClick={() => onStatusChange(tab.id)}
                 aria-pressed={active}
                 className={cn(
-                  "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-2 text-xs font-semibold transition",
+                  "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-2 text-xs 2xl:text-sm font-semibold transition",
                   active
                     ? "bg-navy-deep text-white shadow-sm"
                     : "text-muted hover:bg-lilac"
@@ -84,11 +84,11 @@ export default function OrderFilters({
             />
           </div>
 
-          <span className="inline-flex items-center gap-1.5 rounded-lg bg-lilac px-3 py-2 text-xs font-semibold text-muted">
+          {/* <span className="inline-flex items-center gap-1.5 rounded-lg bg-lilac px-3 py-2 text-xs font-semibold text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             <Printer size={13} className="text-mint-ink" />
             Live Spool: ON
-          </span>
+          </span> */}
 
           <Button
             variant="secondary"

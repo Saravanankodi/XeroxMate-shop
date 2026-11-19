@@ -20,7 +20,7 @@ export default function PaperPricingItem({
   return (
     <PricingCard
       muted={!item.active}
-      className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between"
+      className="flex flex-col gap-4 p-3 sm:flex-row sm:items-center sm:justify-between"
     >
       <div className="flex items-center gap-4">
         <PricingToggle
@@ -36,7 +36,7 @@ export default function PaperPricingItem({
             </h3>
 
             {item.active ? (
-              <span className="rounded-full bg-mint px-2 py-0.5 text-xs font-bold leading-[14px] text-[#00201D]">
+              <span className="rounded-full bg-mint px-2 py-0.5 text-xs font-bold leading-3.5 text-[#00201D]">
                 Active
               </span>
             ) : null}
@@ -45,8 +45,8 @@ export default function PaperPricingItem({
           <p
             className={
               item.active
-                ? "text-xs font-medium leading-[14px] text-brand-strong"
-                : "text-xs font-medium leading-[14px] text-[#757682]"
+                ? "text-xs font-medium leading-3.5 text-brand-strong"
+                : "text-xs font-medium leading-3.5 text-[#757682]"
             }
           >
             {item.active

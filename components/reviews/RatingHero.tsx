@@ -7,18 +7,18 @@ import ReviewSurface from "./ReviewSurface";
 
 export default function RatingHero() {
   return (
-    <ReviewSurface className="relative flex min-h-[257px] flex-col justify-between overflow-hidden bg-navy p-6">
+    <div className="relative flex flex-col justify-between rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.05)]  overflow-hidden bg-navy p-6">
       <span
         aria-hidden
         className="pointer-events-none absolute -bottom-6 -right-6 h-36 w-36 rounded-full bg-brand/20 blur-[20px]"
       />
 
       <div className="relative z-10 flex items-center justify-between gap-4">
-        <p className="text-xs font-semibold uppercase leading-[14px] tracking-[0.55px] text-icon-soft">
+        <p className="text-xs font-semibold uppercase leading-3.5 tracking-[0.55px] text-icon-soft">
           Store Rating Score
         </p>
 
-        <span className="inline-flex h-[18px] items-center rounded-full bg-brand px-2 text-xs font-bold leading-[14px] text-[#FEFCFF]">
+        <span className="inline-flex h-[18px] items-center rounded-full bg-brand px-2 text-xs font-bold leading-3.5 text-[#FEFCFF]">
           Top 1% Tier
         </span>
       </div>
@@ -35,24 +35,24 @@ export default function RatingHero() {
             className="text-mint"
           />
 
-          <p className="mt-1 text-xs font-semibold leading-[14px] text-icon-soft">
+          <p className="mt-1 text-xs font-semibold leading-3.5 text-icon-soft">
             Based on 2 verified student reviews
           </p>
         </div>
       </div>
 
-      <div className="relative z-10 mt-4 flex items-center justify-between gap-4 rounded-xl bg-navy-deep/40 px-2 pb-2 pt-4">
+      <div className="relative z-10 flex items-center justify-between gap-4 rounded-xl bg-navy-deep/40 px-2 pb-2 pt-4">
         <div className="flex items-center gap-1">
           <ThumbsUp size={17} className="text-mint" />
-          <span className="text-xs font-semibold leading-[14px] text-white">
+          <span className="text-xs font-semibold leading-3.5 text-white">
             100% Recommended
           </span>
         </div>
 
-        <span className="text-[11px] font-semibold leading-[14px] text-icon-soft">
+        <span className="text-[11px] font-semibold leading-3.5 text-icon-soft">
           2 of 2 reviews
         </span>
       </div>
-    </ReviewSurface>
+    </div>
   );
 }

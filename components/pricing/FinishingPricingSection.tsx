@@ -21,7 +21,7 @@ export default function FinishingPricingSection({
   const activeCount = items.filter((item) => item.active).length;
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-3">
       <PricingSectionHeader
         icon={Layers}
         title="Binding & Finishing"
@@ -30,7 +30,7 @@ export default function FinishingPricingSection({
         totalCount={items.length}
       />
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {items.map((item) => (
           <FinishingPricingItem
             key={item.id}

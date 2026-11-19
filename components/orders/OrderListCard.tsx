@@ -27,7 +27,7 @@ interface OrderListCardProps {
 
 const statusTone: Record<OrderStatus, BadgeTone> = {
   New: "danger",
-  "In Progress/Spooling": "info",
+  "In Progress": "info",
   "Ready for Pickup": "success",
   Completed: "neutral",
   Rejected: "danger",
@@ -35,7 +35,7 @@ const statusTone: Record<OrderStatus, BadgeTone> = {
 
 const statusLabel: Record<OrderStatus, string> = {
   New: "Action Required",
-  "In Progress/Spooling": "In Progress · Spooling",
+  "In Progress": "In Progress · Spooling",
   "Ready for Pickup": "Ready for Pickup",
   Completed: "Completed",
   Rejected: "Rejected",
@@ -84,7 +84,7 @@ export default function OrderListCard({
                 #{order.id}
               </Link>
 
-              <span className="text-xs font-medium leading-[14px] text-muted">
+              <span className="text-xs font-medium leading-3.5 text-muted">
                 • {order.mode}
               </span>
             </div>
@@ -106,7 +106,7 @@ export default function OrderListCard({
         </div>
 
         <div className="w-full shrink-0 rounded-xl bg-lilac px-4 py-2 text-left sm:w-auto sm:min-w-[206px] sm:text-right">
-          <p className="font-heading text-xs font-semibold leading-[14px] text-muted">
+          <p className="font-heading text-xs font-semibold leading-3.5 text-muted">
             Order Total
           </p>
 
@@ -116,7 +116,7 @@ export default function OrderListCard({
 
           <p
             className={cn(
-              "flex items-center gap-1 text-xs font-medium leading-[14px] sm:justify-end",
+              "flex items-center gap-1 text-xs font-medium leading-3.5 sm:justify-end",
               order.unpaid ? "text-danger" : "text-mint-ink"
             )}
           >
@@ -127,7 +127,7 @@ export default function OrderListCard({
       </div>
 
       {/* Document specifications + action controls */}
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch">
+      {/* <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch">
         <div className="flex min-w-0 flex-1 flex-col gap-2 rounded-xl bg-lilac p-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-2">
             <div className="flex h-[45px] w-10 shrink-0 items-center justify-center rounded-lg bg-stepper text-brand-strong">
@@ -143,7 +143,7 @@ export default function OrderListCard({
                 {order.document.specs.map((spec) => (
                   <span
                     key={spec}
-                    className="rounded bg-white px-2 py-0.5 text-xs font-medium leading-[14px] text-ink"
+                    className="rounded bg-white px-2 py-0.5 text-xs font-medium leading-3.5 text-ink"
                   >
                     {spec}
                   </span>
@@ -157,7 +157,7 @@ export default function OrderListCard({
               {formatCurrency(order.document.lineTotal)}
             </p>
 
-            <p className="text-xs font-semibold leading-[14px] text-muted">
+            <p className="text-xs font-semibold leading-3.5 text-muted">
               ({formatCurrency(order.document.unitPrice)} ×{" "}
               {order.document.pages}{" "}
               {order.document.pages === 1 ? "pg" : "pgs"})
@@ -185,7 +185,7 @@ export default function OrderListCard({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="font-heading leading-[14px] text-danger hover:bg-danger-soft"
+                  className="font-heading leading-3.5 text-danger hover:bg-danger-soft"
                   onClick={() => {
                     setDecision("rejected");
                     onReject?.(order);
@@ -234,7 +234,7 @@ export default function OrderListCard({
             </>
           )}
         </div>
-      </div>
+      </div> */}
     </article>
   );
 }

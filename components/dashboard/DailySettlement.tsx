@@ -27,11 +27,11 @@ export default function DailySettlement() {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-[11px] font-semibold leading-[14px] text-muted">
+        <span className="text-[11px] font-semibold leading-3.5 text-muted">
           ₹4.52 Settled to HDFC **9201
         </span>
 
-        <span className="text-xs font-semibold leading-[14px] text-success">
+        <span className="text-xs font-semibold leading-3.5 text-success">
           74% online
         </span>
       </div>

@@ -31,7 +31,7 @@ export default function SettlementStrip() {
 
       <div className="flex shrink-0 flex-wrap items-center gap-4">
         <div className="text-right">
-          <p className="text-xs font-semibold leading-[14px] text-muted">
+          <p className="text-xs font-semibold leading-3.5 text-muted">
             Payout Cycle
           </p>
           <p className="mt-0.5 font-heading text-xs font-bold leading-4 text-brand-strong">
@@ -42,7 +42,7 @@ export default function SettlementStrip() {
         <span className="h-8 w-px bg-stepper" />
 
         <div className="text-right">
-          <p className="text-xs font-semibold leading-[14px] text-muted">
+          <p className="text-xs font-semibold leading-3.5 text-muted">
             Gateway Fee
           </p>
           <p className="mt-0.5 font-heading text-xs font-bold leading-4 text-success">

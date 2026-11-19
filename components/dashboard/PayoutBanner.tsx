@@ -14,7 +14,7 @@ export default function PayoutBanner() {
               Collect online payments automatically
             </h3>
 
-            <span className="rounded-full bg-brand px-2 py-0.5 text-[11px] font-bold uppercase leading-[14px] tracking-[0.275px] text-[#fefcff]">
+            <span className="rounded-full bg-brand px-2 py-0.5 text-[11px] font-bold uppercase leading-3.5 tracking-[0.275px] text-[#fefcff]">
               Razorpay Instant
             </span>
           </div>

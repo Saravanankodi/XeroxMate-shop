@@ -27,7 +27,7 @@ export default function PaymentOptionsCard({
         badge={
           <Badge
             tone="danger"
-            className="text-[11px] leading-[14px]"
+            className="text-[11px] leading-3.5"
           >
             Required for Setup
           </Badge>
@@ -46,7 +46,7 @@ export default function PaymentOptionsCard({
           title="Pay advance online"
           checked={value.advanceOnline}
           onChange={() => toggle("advanceOnline")}
-          className="border-t border-[#e2e7ff]/60"
+          className="border-t border-info-soft/60"
         />
 
         <ToggleRow
@@ -54,14 +54,14 @@ export default function PaymentOptionsCard({
           bold
           checked={value.pickup}
           onChange={() => toggle("pickup")}
-          className="border-t border-[#e2e7ff]/60"
+          className="border-t border-info-soft/60"
         />
 
         <ToggleRow
           title="Cash on delivery"
           checked={value.cod}
           onChange={() => toggle("cod")}
-          className="border-t border-[#e2e7ff]/60"
+          className="border-t border-info-soft/60"
         />
       </div>
 
@@ -70,16 +70,16 @@ export default function PaymentOptionsCard({
           size={15}
           className="mt-0.5 shrink-0 text-brand-strong"
         />
-        <p className="text-[11px] font-semibold leading-[14px] text-muted">
+        <p className="text-[11px] font-semibold leading-3.5 text-muted">
           When “Pay advance online” is on, customers pay this percentage
           up front and the rest at the shop.
         </p>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-4 flex items-center justify-between">
         <label
           htmlFor="advance-percent"
-          className="mb-1.5 block font-heading text-xs font-semibold leading-4 text-ink"
+          className="block font-heading text-xs font-semibold leading-4 text-ink"
         >
           Advance amount (% of order total)
         </label>
@@ -87,7 +87,7 @@ export default function PaymentOptionsCard({
           id="advance-percent"
           type="number"
           defaultValue={50}
-          className="h-11 w-32 rounded-lg bg-lilac px-4 text-sm text-ink shadow-sm outline-none focus:ring-2 focus:ring-brand/20"
+          className="h-9 w-32 rounded-lg bg-lilac px-4 text-sm text-ink shadow-sm outline-none focus:ring-2 focus:ring-brand/20"
         />
       </div>
     </section>

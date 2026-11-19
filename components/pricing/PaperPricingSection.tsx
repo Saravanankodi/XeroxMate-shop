@@ -25,7 +25,7 @@ export default function PaperPricingSection({
   const activeCount = items.filter((item) => item.active).length;
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-3">
       <PricingSectionHeader
         icon={FileText}
         title="Paper Types & Pricing"
@@ -34,7 +34,7 @@ export default function PaperPricingSection({
         totalCount={items.length}
       />
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {items.map((item) => (
           <PaperPricingItem
             key={item.id}

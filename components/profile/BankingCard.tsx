@@ -35,7 +35,7 @@ export default function BankingCard() {
         title="Banking & Payout Credentials"
         subtitle="Daily automated UPI & NEFT payout route"
         action={
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-icon-soft px-3 py-2 text-[11px] font-bold leading-[14px] text-[#001B3F]">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-icon-soft px-3 py-2 text-[11px] font-bold leading-3.5 text-[#001B3F]">
             <ShieldCheck
               size={14}
               className="text-brand-strong"
@@ -70,7 +70,7 @@ export default function BankingCard() {
             <span className="text-xs font-medium leading-5 text-ink">
               City Union Bank (CIUB)
             </span>
-            <span className="rounded bg-info-soft px-2 py-0.5 text-[11px] font-bold leading-[14px] text-[#264191]">
+            <span className="rounded bg-info-soft px-2 py-0.5 text-[11px] font-bold leading-3.5 text-[#264191]">
               COMMERCIAL
             </span>
           </BankField>
@@ -81,7 +81,7 @@ export default function BankingCard() {
             size={13}
             className="mt-0.5 shrink-0 text-brand-strong"
           />
-          <p className="text-[11px] font-semibold leading-[14px] text-muted">
+          <p className="text-[11px] font-semibold leading-3.5 text-muted">
             All daily store print revenues are credited to this account
             by 11:30 PM every night automatically.
           </p>

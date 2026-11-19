@@ -97,7 +97,7 @@ export default function PricingEngine() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-[1440px] px-4 py-4 sm:px-6 sm:py-5 xl:px-8 xl:py-6">
+    <div className="mx-auto w-full max-w-7xl space-y-2 p-2 sm:px-2 sm:py-3 xl:space-y-2.5 xl:py-3 2xl:px-5 2xl:py-4">
       <p
         className="sr-only"
         role="status"
@@ -108,7 +108,7 @@ export default function PricingEngine() {
           : "All pricing changes saved"}
       </p>
 
-      <div className="space-y-8">
+      <div className="space-y-4">
         <PricingHeader onSave={() => setDirty(false)} />
 
         <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">

@@ -98,7 +98,7 @@ export default function ReviewFilters({
                 type="button"
                 onClick={() => onRatingChange(option.value)}
                 className={cn(
-                  "h-[26px] whitespace-nowrap rounded-lg px-2 text-[11px] leading-[14px] transition",
+                  "h-[26px] whitespace-nowrap rounded-lg px-2 text-[11px] leading-3.5 transition",
                   active
                     ? "bg-white font-semibold text-navy shadow-sm"
                     : "font-medium text-muted hover:bg-white/60"

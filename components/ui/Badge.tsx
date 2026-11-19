@@ -27,7 +27,7 @@ const tones: Record<BadgeTone, string> = {
 };
 
 const sizes = {
-  sm: "px-2 py-0.5 text-xs leading-[14px]",
+  sm: "px-2 py-0.5 text-xs leading-3.5",
   md: "px-2.5 py-1 text-xs leading-4",
 };
 

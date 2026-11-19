@@ -32,7 +32,7 @@ export default function ImagePreview({
           <span className="text-[11px] font-semibold">Preview</span>
         </div>
 
-        <span className="absolute left-3 top-3.5 inline-flex items-center gap-1.5 rounded-md bg-white/90 px-2.5 py-1 text-[11px] font-bold leading-[14px] text-ink shadow-sm backdrop-blur">
+        <span className="absolute left-3 top-3.5 inline-flex items-center gap-1.5 rounded-md bg-white/90 px-2.5 py-1 text-[11px] font-bold leading-3.5 text-ink shadow-sm backdrop-blur">
           <Camera size={12} className="text-brand-strong" />
           {label}
         </span>
@@ -40,10 +40,10 @@ export default function ImagePreview({
 
       <div className="flex items-center justify-between gap-3 border-t border-line/60 bg-white p-3">
         <div className="min-w-0">
-          <p className="truncate text-xs font-semibold leading-[14px] text-ink">
+          <p className="truncate text-xs font-semibold leading-3.5 text-ink">
             {fileName}
           </p>
-          <p className="mt-0.5 text-xs font-semibold leading-[14px] text-muted">
+          <p className="mt-0.5 text-xs font-semibold leading-3.5 text-muted">
             {meta}
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function ImagePreview({
         <div className="flex shrink-0 items-center gap-2">
           <button
             type="button"
-            className="flex h-[26px] items-center gap-1 rounded-lg bg-lilac px-3 text-xs font-semibold leading-[14px] text-ink transition hover:bg-lilac-soft"
+            className="flex h-[26px] items-center gap-1 rounded-lg bg-lilac px-3 text-xs font-semibold leading-3.5 text-ink transition hover:bg-lilac-soft"
           >
             <RotateCcw size={11} />
             Replace

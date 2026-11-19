@@ -45,12 +45,12 @@ function ImageSlot({
           </span>
         </div>
 
-        <span className="text-xs font-semibold leading-[14px] text-muted">
+        <span className="text-xs font-semibold leading-3.5 text-muted">
           Max 10 MB (JPG, PNG)
         </span>
       </div>
 
-      <p className="mt-1 text-xs font-semibold leading-[14px] text-muted">
+      <p className="mt-1 text-xs font-semibold leading-3.5 text-muted">
         {description}
       </p>
 
@@ -93,13 +93,13 @@ export default function ShopImagesCard({
             </h2>
             <Badge
               tone="danger"
-              className="text-[11px] leading-[14px]"
+              className="text-[11px] leading-3.5"
             >
               Required for Setup
             </Badge>
           </div>
 
-          <span className="text-[11px] font-bold leading-[14px] text-brand-strong">
+          <span className="text-[11px] font-bold leading-3.5 text-brand-strong">
             {uploadedCount} / 2 Uploaded
           </span>
         </div>

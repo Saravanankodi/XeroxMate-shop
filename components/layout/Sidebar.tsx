@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   ClipboardList,
   ExternalLink,
@@ -16,6 +16,7 @@ import {
   X,
 } from "lucide-react";
 
+import { signOutClient } from "@/lib/firebase/session-client";
 import { cn } from "@/lib/utils";
 
 const menuItems = [
@@ -55,6 +56,14 @@ interface SidebarProps {
 
 export default function Sidebar({ open, onClose }: SidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function handleSignOut() {
+    onClose();
+    await signOutClient();
+    router.replace("/sign-in");
+    router.refresh();
+  }
 
   return (
     <>
@@ -93,7 +102,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
               <h2 className="truncate font-heading text-lg font-semibold leading-6 tracking-tight text-navy">
                 Tamil Printers
               </h2>
-              <p className="text-[11px] font-semibold leading-[14px] text-brand-strong">
+              <p className="text-[11px] font-semibold leading-3.5 text-brand-strong">
                 Merchant Partner
               </p>
             </div>
@@ -134,7 +143,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                   </span>
 
                   {item.count ? (
-                    <span className="shrink-0 rounded-full bg-brand px-2 py-0.5 text-[11px] font-bold leading-[14px] text-white">
+                    <span className="shrink-0 rounded-full bg-brand px-2 py-0.5 text-[11px] font-bold leading-3.5 text-white">
                       {item.count}
                     </span>
                   ) : null}
@@ -153,7 +162,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
             </button>
 
             <button
-              onClick={onClose}
+              onClick={handleSignOut}
               className="flex items-center gap-2 rounded-xl px-4 py-2 text-base font-semibold leading-5 text-danger transition hover:bg-red-50"
             >
               <LogOut size={16} className="shrink-0" />

@@ -42,7 +42,7 @@ export default function AppShell({
 
   return (
     <MobileNavContext.Provider value={value}>
-      <div className="flex min-h-screen flex-col bg-surface lg:h-screen lg:overflow-hidden">
+      <div className="flex min-h-screen flex-col bg-gray-800/2.5 lg:h-screen lg:overflow-hidden">
         <div className="flex flex-1 lg:min-h-0">
           <Sidebar
             open={sidebarOpen}

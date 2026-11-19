@@ -43,7 +43,7 @@ export default function CardHeader({
           </div>
 
           {subtitle ? (
-            <p className="mt-0.5 text-[11px] font-semibold leading-[14px] text-muted">
+            <p className="mt-0.5 text-[11px] font-semibold leading-3.5 text-muted">
               {subtitle}
             </p>
           ) : null}

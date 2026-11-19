@@ -32,10 +32,10 @@ export default function LedgerControls({
         />
       </div>
 
-      <div className="flex flex-wrap items-center gap-2">
+      {/* <div className="flex flex-wrap items-center gap-2">
         <button
           type="button"
-          className="inline-flex h-8 items-center gap-1.5 rounded-xl bg-white px-2.5 text-[11px] font-semibold leading-[14px] text-ink shadow-sm transition hover:bg-lilac"
+          className="inline-flex h-8 items-center gap-1.5 rounded-xl bg-white px-2.5 text-[11px] font-semibold leading-3.5 text-ink shadow-sm transition hover:bg-lilac"
         >
           <CalendarDays
             size={12}
@@ -68,7 +68,7 @@ export default function LedgerControls({
         >
           <ListFilter size={14} />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

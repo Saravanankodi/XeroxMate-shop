@@ -9,7 +9,7 @@ export default function WalletPage() {
   return (
     <div className="mx-auto w-full max-w-[1440px] space-y-6 p-4 sm:p-6">
       <WalletHeader />
-      <SettlementStrip />
+      {/* <SettlementStrip /> */}
       <WalletKpiGrid />
       <PayoutDestinationCard />
       <LedgerSection transactions={walletTransactions} />

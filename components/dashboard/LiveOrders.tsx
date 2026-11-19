@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { QUEUE_ORDERS } from "@/lib/orders";
 import Card from "../ui/Card";
 import OrderCard from "./OrderCard";
 
 const tabs = [
-  "All Orders (2)",
   "New (1)",
   "Ready for Pickup (1)",
 ];
@@ -14,15 +14,21 @@ const tabs = [
 export default function LiveOrders() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
+  const activeOrders = QUEUE_ORDERS.filter((order) =>
+    activeTab === "Ready for Pickup (1)"
+      ? order.status === "Ready for Pickup"
+      : order.status === "New"
+  );
+
   return (
     <section>
-      <Card className="flex flex-col gap-3 p-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+      <Card className="flex flex-col gap-3  px-3 sm:px-4 py-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="font-heading text-lg font-bold leading-6 text-navy">
             Live Orders
           </h2>
 
-          <span className="rounded-full bg-brand px-2 py-0.5 text-xs font-semibold leading-[14px] text-[#fefcff]">
+          <span className="rounded-full bg-brand px-2 py-0.5 text-xs font-semibold leading-3.5 text-[#fefcff]">
             2 orders active
           </span>
         </div>
@@ -33,7 +39,7 @@ export default function LiveOrders() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`whitespace-nowrap rounded-lg px-3 py-1 text-xs font-semibold leading-4 transition ${
+                className={`whitespace-nowrap rounded-lg px-3 py-1 text-[12.25px] sm:text-xs  font-semibold leading-4 transition ${
                   activeTab === tab
                     ? "bg-white text-navy shadow-sm"
                     : "font-medium text-muted hover:bg-white/60"
@@ -45,16 +51,17 @@ export default function LiveOrders() {
           </div>
 
           <button className="flex shrink-0 items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium leading-4 text-brand-strong transition hover:bg-lilac">
-            View all archive
+            View all <span className="hidden sm:block">archive</span>
             <ArrowRight size={11} />
           </button>
         </div>
       </Card>
 
-      <div className="mt-4">
-        {activeTab === "New (1)" ||
-        activeTab === "All Orders (2)" ? (
-          <OrderCard />
+      <div className="mt-2 space-y-2">
+        {activeOrders.length > 0 ? (
+          activeOrders.map((order) => (
+            <OrderCard key={order.id} order={order} />
+          ))
         ) : (
           <Card className="p-6 text-center text-xs text-muted">
             No orders to display in this category.

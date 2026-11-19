@@ -30,7 +30,7 @@ export default function FeedbackProtectionCard() {
 
       <button
         type="button"
-        className="mt-auto inline-flex w-fit items-center gap-1 pt-2 font-heading text-[11px] font-semibold leading-[14px] text-brand-strong hover:underline"
+        className="mt-auto inline-flex w-fit items-center gap-1 pt-2 font-heading text-[11px] font-semibold leading-3.5 text-brand-strong hover:underline"
       >
         Learn about Seller Reputation Rules
         <ChevronRight size={10} />

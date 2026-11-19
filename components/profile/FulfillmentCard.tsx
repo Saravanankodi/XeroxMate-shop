@@ -28,7 +28,7 @@ export default function FulfillmentCard({
         badge={
           <Badge
             tone="danger"
-            className="text-[11px] leading-[14px]"
+            className="text-[11px] leading-3.5"
           >
             Required for Setup
           </Badge>

@@ -39,7 +39,7 @@ export default function FulfillmentActions({
                 done ? "bg-lilac" : "bg-lilac/60 hover:bg-lilac"
               )}
             >
-              <span className="flex items-center gap-2 text-xs font-medium text-muted">
+              <span className="flex items-center gap-2 text-xs 2xl:text-sm font-medium text-muted">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white text-[10px] font-bold text-navy">
                   {index + 1}
                 </span>
@@ -60,11 +60,11 @@ export default function FulfillmentActions({
                       )
                     );
                   }}
-                  className="peer h-4 w-4 cursor-pointer appearance-none rounded border border-[#c9cde3] bg-white transition checked:border-brand checked:bg-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
+                  className="peer h-5 w-5 cursor-pointer appearance-none rounded border border-[#c9cde3] bg-white transition checked:border-brand checked:bg-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30"
                 />
 
                 <Check
-                  size={12}
+                  size={14}
                   className="pointer-events-none absolute text-white opacity-0 transition peer-checked:opacity-100"
                 />
               </span>

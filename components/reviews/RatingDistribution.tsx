@@ -8,13 +8,13 @@ import ReviewSurface from "./ReviewSurface";
 
 export default function RatingDistribution() {
   return (
-    <ReviewSurface className="flex min-h-[244px] flex-col gap-4 p-5 px-6 xl:self-start">
+    <ReviewSurface className="flex flex-col gap-4 p-5 px-6 xl:self-start">
       <div className="flex items-center justify-between gap-4">
         <h2 className="font-heading text-base font-semibold leading-[22px] text-ink">
           Star Distribution
         </h2>
 
-        <span className="text-xs font-semibold leading-[14px] text-brand-strong">
+        <span className="text-xs font-semibold leading-3.5 text-brand-strong">
           Active Term 2026
         </span>
       </div>
@@ -25,7 +25,7 @@ export default function RatingDistribution() {
             key={item.stars}
             className="flex items-center gap-2"
           >
-            <span className="flex w-7 items-center gap-0.5 text-[11px] font-semibold leading-[14px] text-ink">
+            <span className="flex w-7 items-center gap-0.5 text-[11px] font-semibold leading-3.5 text-ink">
               {item.stars}
               <Star
                 size={12}
@@ -40,11 +40,11 @@ export default function RatingDistribution() {
               />
             </span>
 
-            <span className="w-8 text-right text-[11px] font-semibold leading-[14px] text-ink">
+            <span className="w-8 text-right text-[11px] font-semibold leading-3.5 text-ink">
               {item.count}
             </span>
 
-            <span className="w-10 text-right text-[11px] leading-[14px] text-muted">
+            <span className="w-10 text-right text-[11px] leading-3.5 text-muted">
               {item.percentage}%
             </span>
           </div>

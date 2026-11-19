@@ -14,7 +14,7 @@ export default function CounterHandover({
   customerName,
   passcode,
 }: CounterHandoverProps) {
-  const [otp, setOtp] = useState(passcode);
+  const [otp, setOtp] = useState('');
   const [verified, setVerified] = useState(false);
   const [error, setError] = useState("");
 
@@ -51,7 +51,7 @@ export default function CounterHandover({
 
         <p
           className={cn(
-            "truncate text-right text-[11px] font-semibold leading-[14px]",
+            "truncate text-right text-[11px] font-semibold leading-3.5",
             error ? "text-danger" : "text-muted"
           )}
           title={error || undefined}
@@ -67,7 +67,7 @@ export default function CounterHandover({
           error && "ring-1 ring-danger"
         )}
       >
-        <div className="w-[90px] shrink-0">
+        <div className="w-22.5 shrink-0">
           <p className="whitespace-nowrap text-[10px] font-normal leading-5 text-[#757682]">
             VERIFICATION CODE
           </p>
@@ -77,6 +77,7 @@ export default function CounterHandover({
             maxLength={4}
             inputMode="numeric"
             disabled={verified}
+            placeholder="0 0 0 0"
             aria-label="Verification code"
             onChange={(event) => {
               setOtp(event.target.value.replace(/\D/g, ""));
@@ -86,17 +87,17 @@ export default function CounterHandover({
           />
         </div>
 
-        <button
+        {/* <button
           type="button"
           disabled={verified}
           onClick={() => {
             setOtp(passcode);
             setError("");
           }}
-          className="flex h-[22px] shrink-0 items-center justify-center rounded bg-info-soft px-3 py-1 text-xs font-semibold leading-[14px] text-navy transition hover:bg-icon-soft disabled:cursor-not-allowed disabled:opacity-60"
+          className="flex h-[22px] shrink-0 items-center justify-center rounded bg-info-soft px-3 py-1 text-xs font-semibold leading-3.5 text-navy transition hover:bg-icon-soft disabled:cursor-not-allowed disabled:opacity-60"
         >
           Auto Fill
-        </button>
+        </button> */}
       </div>
 
       <button

@@ -62,11 +62,11 @@ export default function PickupTokenDesk() {
       )}
 
       <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-1">
-        <span className="text-xs font-semibold leading-[14px] text-muted">
+        <span className="text-xs font-semibold leading-3.5 text-muted">
           Pending OTPs: 2 awaiting
         </span>
 
-        <button className="flex items-center gap-1 text-xs font-semibold leading-[14px] text-brand-strong transition hover:text-brand">
+        <button className="flex items-center gap-1 text-xs font-semibold leading-3.5 text-brand-strong transition hover:text-brand">
           <ScanQrCode size={12} />
           Open Scanner Cam
         </button>

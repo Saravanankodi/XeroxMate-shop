@@ -15,7 +15,7 @@ export default function ShopProfileSaveBar({
   onDiscard,
 }: ShopProfileSaveBarProps) {
   return (
-    <div className="sticky bottom-0 z-20 mt-6 flex flex-col gap-2 border-t border-line/70 bg-white/95 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] backdrop-blur sm:flex-row sm:items-center sm:justify-between">
+    <div className="sticky bottom-0 z-20 mt-6 flex flex-col gap-2 border-t border-line/70 px-4 bg-white/95 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] backdrop-blur sm:flex-row sm:items-center sm:justify-between">
       <div className="flex flex-wrap items-center gap-2">
         <span
           className={cn(
@@ -27,7 +27,7 @@ export default function ShopProfileSaveBar({
           {dirty ? "Unsaved changes" : "No unsaved changes"}
         </span>
         <span className="text-sm text-[#c5c5d3]">·</span>
-        <span className="text-[11px] font-semibold leading-[14px] text-muted">
+        <span className="text-[11px] font-semibold leading-3.5 text-muted">
           {lastSaved}
         </span>
       </div>
@@ -38,7 +38,7 @@ export default function ShopProfileSaveBar({
           variant="secondary"
           size="md"
           onClick={onDiscard}
-          className="h-9 rounded-lg font-heading text-xs font-semibold text-muted"
+          className="h-9 rounded-lg font-heading text-xs 2xl:text-sm font-semibold text-muted"
         >
           Discard Changes
         </Button>
@@ -46,7 +46,7 @@ export default function ShopProfileSaveBar({
         <Button
           type="submit"
           size="md"
-          className="h-9 gap-2 rounded-lg bg-navy px-6 font-heading text-xs font-bold text-white hover:bg-navy/90"
+          className="h-9 gap-2 rounded-lg bg-navy px-6 2xl:text-sm font-heading text-xs font-bold text-white hover:bg-navy/90"
         >
           <Save size={14} />
           Save Changes

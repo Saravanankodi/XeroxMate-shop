@@ -16,7 +16,7 @@ export default function QuickRateCard() {
           Quick Rate Card
         </h3>
 
-        <button className="flex items-center gap-1 text-xs font-semibold leading-[14px] text-brand-strong transition hover:text-brand">
+        <button className="flex items-center gap-1 text-xs font-semibold leading-3.5 text-brand-strong transition hover:text-brand">
           <Pencil size={11} />
           Edit Rates
         </button>

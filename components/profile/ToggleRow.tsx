@@ -56,7 +56,7 @@ export default function ToggleRow({
       <div className="min-w-0">
         <h3
           className={cn(
-            "font-heading text-xs leading-4 text-ink",
+            "font-heading text-xs 2xl:text-sm leading-4 text-ink",
             bold ? "font-bold" : "font-semibold"
           )}
         >
@@ -64,7 +64,7 @@ export default function ToggleRow({
         </h3>
 
         {description ? (
-          <p className="mt-0.5 text-[11px] font-semibold leading-[14px] text-muted">
+          <p className="mt-0.5 text-[11px] font-semibold leading-3.5 text-muted">
             {description}
           </p>
         ) : null}

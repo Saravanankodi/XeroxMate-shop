@@ -20,7 +20,7 @@ export default function WalletKpiGrid() {
         footerValue="4 orders"
         meta={
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="inline-flex items-center gap-0.5 text-[11px] font-semibold leading-[14px] text-brand-strong">
+            <span className="inline-flex items-center gap-0.5 text-[11px] font-semibold leading-3.5 text-brand-strong">
               <TrendingUp size={12} />
               +12.4%
             </span>
@@ -41,7 +41,7 @@ export default function WalletKpiGrid() {
         footerValueClassName="text-brand-strong"
         meta={
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="inline-flex items-center rounded-full bg-info-soft px-2 py-0.5 text-xs font-semibold leading-[14px] text-muted">
+            <span className="inline-flex items-center rounded-full bg-info-soft px-2 py-0.5 text-xs font-semibold leading-3.5 text-muted">
               All cleared
             </span>
             <span className="text-xs leading-4 text-muted">
@@ -60,7 +60,7 @@ export default function WalletKpiGrid() {
         footerValue="₹1.00 (No lockin)"
         footerValueClassName="text-white"
         meta={
-          <span className="inline-flex items-center gap-1 rounded-full bg-brand px-2 py-0.5 text-xs font-semibold leading-[14px] text-[#FEFCFF]">
+          <span className="inline-flex items-center gap-1 rounded-full bg-brand px-2 py-0.5 text-xs font-semibold leading-3.5 text-[#FEFCFF]">
             <Zap size={10} />
             Instant Payout Ready
           </span>
@@ -76,7 +76,7 @@ export default function WalletKpiGrid() {
         footerValue="₹1.50 / order"
         meta={
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="inline-flex items-center gap-1 text-xs font-semibold leading-[14px] text-success">
+            <span className="inline-flex items-center gap-1 text-xs font-semibold leading-3.5 text-success">
               <Check size={11} />
               100% Settled
             </span>

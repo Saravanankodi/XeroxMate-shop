@@ -15,7 +15,7 @@ export default function ShopAddressCard() {
         badge={
           <Badge
             tone="danger"
-            className="text-[11px] leading-[14px]"
+            className="text-[11px] leading-3.5"
           >
             Required for Setup
           </Badge>
@@ -63,14 +63,14 @@ export default function ShopAddressCard() {
 
         <div className="pt-1">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <span className="inline-flex items-center gap-1 text-[11px] font-semibold leading-[14px] text-muted">
+            <span className="inline-flex items-center gap-1 text-[11px] font-semibold leading-3.5 text-muted">
               <MapPin size={13} className="text-brand-strong" />
               GPS Geofence Match (99.8% precision)
             </span>
 
             <button
               type="button"
-              className="text-[11px] font-medium leading-[14px] text-brand-strong"
+              className="text-[11px] font-medium leading-3.5 text-brand-strong"
             >
               Re-pin on Map
             </button>
@@ -83,7 +83,7 @@ export default function ShopAddressCard() {
               <MapPin size={18} />
             </div>
 
-            <div className="absolute bottom-2 left-2 inline-flex items-center gap-1.5 rounded-lg bg-white/90 px-2.5 py-1.5 text-[11px] font-semibold leading-[14px] text-ink shadow-sm backdrop-blur">
+            <div className="absolute bottom-2 left-2 inline-flex items-center gap-1.5 rounded-lg bg-white/90 px-2.5 py-1.5 text-[11px] font-semibold leading-3.5 text-ink shadow-sm backdrop-blur">
               <MapPin size={12} className="text-brand-strong" />
               Kumbakonam, Tamil Nadu · 612302
             </div>

@@ -36,7 +36,7 @@ export default function PricingSectionHeader({
           </p>
         </div>
 
-        <span className="inline-flex shrink-0 items-center rounded-full bg-lilac px-3 py-1 text-xs font-semibold leading-[14px] text-navy">
+        <span className="inline-flex shrink-0 items-center rounded-full bg-lilac px-3 py-1 text-xs font-semibold leading-3.5 text-navy">
           {activeCount} of {totalCount} active
         </span>
       </div>

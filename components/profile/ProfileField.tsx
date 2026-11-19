@@ -29,7 +29,7 @@ export default function ProfileField({
     <div className="min-w-0">
       <label
         htmlFor={inputId}
-        className="mb-1.5 block font-heading text-xs font-semibold leading-4 text-ink"
+        className="mb-1.5 block font-heading text-xs 2xl:text-sm font-semibold leading-4 text-ink"
       >
         {label}
         {required ? <span className="text-danger"> *</span> : null}
@@ -62,7 +62,7 @@ export default function ProfileField({
       </div>
 
       {hint ? (
-        <p className="mt-1 text-[11px] font-semibold leading-[14px] text-muted">
+        <p className="mt-1 text-[11px] font-semibold leading-3.5 text-muted">
           {hint}
         </p>
       ) : null}

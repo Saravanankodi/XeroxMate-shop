@@ -35,9 +35,9 @@ export default function WalletMetricCard({
   footerValueClassName,
 }: WalletMetricCardProps) {
   return (
-    <WalletCard
+    <div
       className={cn(
-        "relative flex min-h-49.5 flex-col justify-between overflow-hidden p-6",
+        "relative flex flex-col justify-between overflow-hidden rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.05)] p-4",
         highlighted ? "bg-navy shadow-lg" :"bg-white "
       )}
     >
@@ -79,7 +79,7 @@ export default function WalletMetricCard({
           </span>
         </div>
 
-        <div className="mt-4">
+        <div className="mt-2">
           <p
             className={cn(
               "font-heading text-4xl font-bold leading-[44px] tracking-[-0.9px]",
@@ -93,7 +93,7 @@ export default function WalletMetricCard({
         </div>
       </div>
 
-      <div className="relative z-10 mt-4 flex items-center justify-between gap-2 text-[11px] font-semibold leading-[14px]">
+      <div className="relative z-10 mt-4 flex items-center justify-between gap-2 text-[11px] font-semibold leading-3.5">
         <span
           className={cn(
             highlighted ? "text-icon-soft" : "text-muted"
@@ -112,6 +112,6 @@ export default function WalletMetricCard({
           {footerValue}
         </span>
       </div>
-    </WalletCard>
+    </div>
   );
 }

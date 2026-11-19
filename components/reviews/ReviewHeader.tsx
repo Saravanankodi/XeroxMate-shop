@@ -13,7 +13,7 @@ export default function ReviewHeader({
 }: ReviewHeaderProps) {
   return (
     <header className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-      <div className="max-w-[517px]">
+      <div className="max-w-130">
         <h1 className="font-heading text-[30px] font-bold leading-[38px] tracking-[-0.75px] text-ink">
           Customer Feedback & Reviews
         </h1>
@@ -45,10 +45,10 @@ export default function ReviewHeader({
           </button>
         </div>
 
-        <span className="inline-flex h-8 w-fit items-center gap-1.5 rounded-xl bg-[#00312C] px-4 text-[11px] font-semibold leading-[14px] text-white shadow-sm">
+        {/* <span className="inline-flex h-8 w-fit items-center gap-1.5 rounded-xl bg-[#00312C] px-4 text-[11px] font-semibold leading-3.5 text-white shadow-sm">
           <ShieldCheck size={17} className="text-mint" />
           100% Student Verified
-        </span>
+        </span> */}
       </div>
     </header>
   );

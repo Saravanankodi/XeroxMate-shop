@@ -22,7 +22,5 @@ export interface WalletTransaction {
 }
 
 export type LedgerTabId =
-  | "transactions"
-  | "withdrawals"
-  | "cycles"
-  | "tax";
+  | "request"
+  | "history";

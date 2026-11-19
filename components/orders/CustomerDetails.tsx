@@ -75,11 +75,11 @@ export default function CustomerDetails({
           </span>
         </div>
 
-        <div className="flex items-center justify-between gap-3 rounded-lg bg-lilac px-3 py-2.5">
+        {/* <div className="flex items-center justify-between gap-3 rounded-lg bg-lilac px-3 py-2.5">
           <span className="text-xs text-muted">Pickup Passcode</span>
 
           <Badge tone="info">{customer.passcode}</Badge>
-        </div>
+        </div> */}
       </div>
     </SectionCard>
   );

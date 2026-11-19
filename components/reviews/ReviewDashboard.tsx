@@ -101,7 +101,7 @@ export default function ReviewDashboard() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-[1440px] space-y-6 p-4 sm:p-6">
+    <div className="mx-auto w-full max-w-7xl space-y-2 p-2 sm:px-2 sm:py-3 xl:space-y-2.5 xl:py-3 2xl:px-5 2xl:py-4">
       <ReviewHeader onExport={exportReviews} />
 
       <RatingOverview />

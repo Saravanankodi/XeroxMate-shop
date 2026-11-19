@@ -92,7 +92,7 @@ export default function PaymentCollection({
             step="0.01"
             value={amount}
             onChange={(event) => setAmount(event.target.value)}
-            placeholder="Amount"
+            placeholder={amountDue.toString()}
             className="h-full w-full bg-transparent text-sm text-ink outline-none placeholder:text-muted/70"
             aria-label="Payment amount"
           />

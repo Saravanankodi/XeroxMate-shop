@@ -59,13 +59,13 @@ export default function TransactionItem({
               Order {transaction.orderId}
             </Link>
 
-            <span className="rounded-full bg-lilac-soft px-2 py-0.5 text-[11px] font-medium leading-[14px] text-muted">
+            <span className="rounded-full bg-lilac-soft px-2 py-0.5 text-[11px] font-medium leading-3.5 text-muted">
               {transaction.method}
             </span>
 
             <span
               className={cn(
-                "rounded-full px-2 py-0.5 text-[11px] font-semibold leading-[14px]",
+                "rounded-full px-2 py-0.5 text-[11px] font-semibold leading-3.5",
                 statusToneClasses[transaction.statusTone]
               )}
             >
@@ -95,7 +95,7 @@ export default function TransactionItem({
           <p className="font-heading text-lg font-bold leading-6 text-success">
             +₹{transaction.amount}
           </p>
-          <p className="text-[11px] font-semibold leading-[14px] text-muted">
+          <p className="text-[11px] font-semibold leading-3.5 text-muted">
             Credited to Balance
           </p>
         </div>

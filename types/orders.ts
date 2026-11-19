@@ -1,6 +1,6 @@
 export type OrderStatus =
   | "New"
-  | "In Progress/Spooling"
+  | "In Progress"
   | "Ready for Pickup"
   | "Completed"
   | "Rejected";

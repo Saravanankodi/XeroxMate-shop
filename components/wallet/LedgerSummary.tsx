@@ -45,7 +45,7 @@ export default function LedgerSummary({
           onClick={onExport}
           disabled={exportDisabled}
           className={cn(
-            "inline-flex h-[26px] items-center gap-1 rounded-xl bg-lilac px-4 font-heading text-xs font-semibold leading-[14px] text-ink transition hover:bg-lilac-soft",
+            "inline-flex h-[26px] items-center gap-1 rounded-xl bg-lilac px-4 font-heading text-xs font-semibold leading-3.5 text-ink transition hover:bg-lilac-soft",
             exportDisabled &&
               "pointer-events-none opacity-50"
           )}
@@ -64,7 +64,7 @@ export default function LedgerSummary({
             <ChevronLeft size={14} />
           </button>
 
-          <span className="inline-flex h-[22px] min-w-[29px] items-center justify-center rounded-lg bg-navy px-2 text-[11px] font-bold leading-[14px] text-white">
+          <span className="inline-flex h-[22px] min-w-[29px] items-center justify-center rounded-lg bg-navy px-2 text-[11px] font-bold leading-3.5 text-white">
             1
           </span>
 

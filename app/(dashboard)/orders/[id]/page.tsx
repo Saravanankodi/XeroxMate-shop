@@ -33,7 +33,7 @@ export default async function OrderDetailsPage({
   const order = getOrderDetails(id);
 
   return (
-    <div className="mx-auto w-full max-w-[1360px] space-y-4 px-4 py-4 sm:space-y-5 sm:px-6 sm:py-5 xl:space-y-6 xl:py-6 2xl:px-8">
+    <div className="mx-auto w-full max-w-7xl space-y-2 p-2 sm:px-2 sm:py-3 xl:space-y-2.5 xl:py-3 2xl:px-5 2xl:py-4">
       <OrderDetailsHeader order={order} />
 
       <ProductionWorkflow stages={order.workflow} />

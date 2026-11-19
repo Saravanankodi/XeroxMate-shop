@@ -12,8 +12,8 @@ import type {
 export const ORDER_TABS: OrderTab[] = [
   { id: "New", label: "New", count: 1 },
   {
-    id: "In Progress/Spooling",
-    label: "In Progress/Spooling",
+    id: "In Progress",
+    label: "In Progress",
     count: 1,
   },
   { id: "Ready for Pickup", label: "Ready for Pickup", count: 1 },
@@ -46,8 +46,44 @@ export const QUEUE_ORDERS: QueueOrder[] = [
     document: newOrderDocument,
   },
   {
+    id: "OMX-3347",
+    status: "New",
+    placedAgo: "4m ago",
+    mode: "Counter Pickup",
+    customer: "THESTART (Saravanan K)",
+    customerName: "Saravanan K",
+    phone: "+91 90925 79460",
+    amount: 1.54,
+    unpaid: true,
+    document: newOrderDocument,
+  },
+  {
+    id: "OMX-3548",
+    status: "New",
+    placedAgo: "4m ago",
+    mode: "Counter Pickup",
+    customer: "THESTART (Saravanan K)",
+    customerName: "Saravanan K",
+    phone: "+91 90925 79460",
+    amount: 1.54,
+    unpaid: true,
+    document: newOrderDocument,
+  },
+  {
+    id: "OMX-3549",
+    status: "New",
+    placedAgo: "4m ago",
+    mode: "Counter Pickup",
+    customer: "THESTART (Saravanan K)",
+    customerName: "Saravanan K",
+    phone: "+91 90925 79460",
+    amount: 1.54,
+    unpaid: true,
+    document: newOrderDocument,
+  },
+  {
     id: "OMX-3546",
-    status: "In Progress/Spooling",
+    status: "In Progress",
     placedAgo: "18m ago",
     mode: "Counter Pickup",
     customer: "Ravi Kumar",
@@ -128,7 +164,6 @@ export const QUEUE_ORDERS: QueueOrder[] = [
 ];
 
 const workflowTemplate = [
-  { title: "New Order", time: "11/10, 5:59 pm" },
   { title: "Accepted", time: "11/10, 6:01 pm" },
   { title: "Printing", time: "11/10, 6:03 pm" },
   { title: "Finishing", time: "11/10, 6:04 pm" },
@@ -138,7 +173,7 @@ const workflowTemplate = [
 
 const currentStageByStatus: Record<OrderStatus, number> = {
   New: 0,
-  "In Progress/Spooling": 2,
+  "In Progress": 2,
   "Ready for Pickup": 4,
   Completed: 5,
   Rejected: 0,
@@ -146,7 +181,7 @@ const currentStageByStatus: Record<OrderStatus, number> = {
 
 const completedStepsByStatus: Record<OrderStatus, number> = {
   New: 0,
-  "In Progress/Spooling": 2,
+  "In Progress": 2,
   "Ready for Pickup": 4,
   Completed: 5,
   Rejected: 0,
@@ -197,7 +232,7 @@ function buildSpecs(document: OrderDocument): PrintSpec[] {
     { label: "Page layout", value: "1 Page / Sheet" },
     { label: "Binding", value: "None" },
     { label: "Extras", value: "None" },
-    { label: "Delivery option", value: "Pickup", hint: "Shelf Slot: A-12" },
+    { label: "Delivery option", value: "Pickup", },
   ];
 }
 

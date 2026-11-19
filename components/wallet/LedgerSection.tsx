@@ -18,22 +18,14 @@ interface LedgerSectionProps {
 
 const tabs: LedgerTab[] = [
   {
-    id: "transactions",
-    label: "Transactions",
+    id: "request",
+    label: "Withdrawals Request",
     count: 4,
   },
   {
-    id: "withdrawals",
-    label: "Withdrawals",
+    id: "history",
+    label: "Withdrawals Historys",
     count: 0,
-  },
-  {
-    id: "cycles",
-    label: "Daily Cycles & Logs",
-  },
-  {
-    id: "tax",
-    label: "TDS & GST Invoices",
   },
 ];
 
@@ -45,7 +37,7 @@ function LedgerEmptyState({
   description: string;
 }) {
   return (
-    <div className="flex min-h-[200px] flex-col items-center justify-center rounded-2xl border border-dashed border-line bg-white p-8 text-center">
+    <div className="flex min-h-50 flex-col items-center justify-center rounded-2xl border border-dashed border-line bg-white p-8 text-center">
       <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-lilac text-brand-strong">
         <Wallet size={22} />
       </span>
@@ -63,7 +55,7 @@ export default function LedgerSection({
   transactions,
 }: LedgerSectionProps) {
   const [activeTab, setActiveTab] =
-    useState<LedgerTabId>("transactions");
+    useState<LedgerTabId>("request");
   const [search, setSearch] = useState("");
 
   const query = search.trim().toLowerCase();
@@ -88,7 +80,7 @@ export default function LedgerSection({
   }, [query, transactions]);
 
   const visibleTransactions =
-    activeTab === "transactions"
+    activeTab === "request"
       ? filteredTransactions
       : [];
 
@@ -159,7 +151,7 @@ export default function LedgerSection({
         onSearchChange={setSearch}
       />
 
-      {activeTab === "transactions" ? (
+      {activeTab === "request" ? (
         visibleTransactions.length > 0 ? (
           <>
             <div className="space-y-2">

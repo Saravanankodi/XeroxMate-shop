@@ -9,7 +9,7 @@ export default function ReviewSurface({
   return (
     <div
       className={cn(
-        "rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.05)]",
+        "rounded-xl shadow-[0_1px_2px_rgba(0,0,0,0.05)] bg-white",
         className
       )}
       {...props}

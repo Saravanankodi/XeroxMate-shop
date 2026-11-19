@@ -17,7 +17,7 @@ export default function FinishingPricingItem({
   return (
     <PricingCard
       muted={!item.active}
-      className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between"
+      className="flex flex-col gap-4 p-3 sm:flex-row sm:items-center sm:justify-between"
     >
       <div className="flex items-center gap-4">
         <PricingToggle
@@ -34,8 +34,8 @@ export default function FinishingPricingItem({
           <p
             className={
               item.active
-                ? "text-[11px] font-semibold leading-[14px] text-muted"
-                : "text-[11px] font-semibold leading-[14px] text-[#757682]"
+                ? "text-[11px] font-semibold leading-3.5 text-muted"
+                : "text-[11px] font-semibold leading-3.5 text-[#757682]"
             }
           >
             Charged per {item.unit} - ₹{item.price || "0"}

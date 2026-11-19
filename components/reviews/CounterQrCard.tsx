@@ -18,7 +18,7 @@ export default function CounterQrCard() {
           <h2 className="font-heading text-base font-semibold leading-[22px] text-ink">
             Counter Review Poster
           </h2>
-          <p className="text-xs font-semibold leading-[14px] text-muted">
+          <p className="text-xs font-semibold leading-3.5 text-muted">
             Boost student feedback rate
           </p>
         </div>

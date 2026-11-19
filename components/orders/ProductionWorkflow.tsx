@@ -20,14 +20,14 @@ export default function ProductionWorkflow({
   return (
     <SectionCard
       icon={Clock}
-      title="Production Fulfillment Workflow"
+      title="Production Workflow"
       badge={
         <Badge tone="info">
           Stage {activeStage} of {stages.length} Active
         </Badge>
       }
     >
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-6">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
         {stages.map((stage, index) => {
           const isDone = stage.state === "done";
           const isCurrent = stage.state === "current";
@@ -46,7 +46,7 @@ export default function ProductionWorkflow({
             >
               <span
                 className={cn(
-                  "absolute inset-x-0 top-0 h-[3px]",
+                  "absolute inset-x-0 top-0 h-0.75",
                   isDone || isCurrent ? "bg-brand" : "bg-lilac-soft"
                 )}
               />
@@ -79,7 +79,7 @@ export default function ProductionWorkflow({
                 </span>
               </div>
 
-              <p className="mt-2.5 text-xs font-semibold leading-4 text-ink">
+              <p className="mt-2.5 text-xs 2xl:text-sm font-semibold leading-4 text-ink">
                 {stage.title}
               </p>
 

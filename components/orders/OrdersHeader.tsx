@@ -15,7 +15,7 @@ export default function OrdersHeader({
   const { openSidebar } = useMobileNav();
 
   return (
-    <header className="dashboard-card flex items-center gap-3 px-4 py-3.5 sm:gap-4 sm:px-6 sm:py-4">
+    <header className="dashboard-card flex items-center gap-3 px-4 py-3.5 sm:gap-4 sm:px-4 sm:py-3">
       <button
         onClick={openSidebar}
         aria-label="Open navigation"
@@ -24,10 +24,10 @@ export default function OrdersHeader({
         <Menu size={20} />
       </button>
 
-      <IconTile icon={Printer} size="lg" tone="info" />
+      {/* <IconTile icon={Printer} size="lg" tone="info" className="hidden sm:block"/> */}
 
       <div className="min-w-0">
-        <h1 className="truncate font-heading text-2xl font-semibold leading-tight text-ink sm:text-[30px]">
+        <h1 className="truncate font-heading text-[22px] sm:text-2xl font-semibold leading-tight text-ink ">
           {title}
         </h1>
       </div>

@@ -14,7 +14,7 @@ export default function OperatingHoursCard() {
         action={
           <Badge
             tone="success"
-            className="gap-1.5 px-3 py-1 text-[11px] leading-[14px] text-[#00201D]"
+            className="gap-1.5 px-3 py-1 text-[11px] leading-3.5 text-[#00201D]"
           >
             <span className="h-2 w-2 rounded-full bg-[#00312C]" />
             Currently Open (09:00 - 23:00)
@@ -27,7 +27,7 @@ export default function OperatingHoursCard() {
           <h3 className="font-heading text-xs font-semibold leading-4 text-ink">
             Weekly Schedule
           </h3>
-          <span className="text-[11px] font-medium leading-[14px] text-brand-strong">
+          <span className="text-[11px] font-medium leading-3.5 text-brand-strong">
             Mon – Sun · Same hours
           </span>
         </div>
