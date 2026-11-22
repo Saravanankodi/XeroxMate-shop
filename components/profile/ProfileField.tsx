@@ -45,6 +45,7 @@ export default function ProfileField({
 
         <input
           id={inputId}
+          required={required}
           className={cn(
             "h-11 w-full rounded-lg bg-lilac px-4 text-sm text-ink shadow-sm outline-none transition placeholder:text-muted/60 focus:ring-2 focus:ring-brand/20",
             Icon && "pl-10",

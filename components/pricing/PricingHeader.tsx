@@ -1,13 +1,15 @@
-import { Eye, Percent, Save } from "lucide-react";
+import { Loader2, Save } from "lucide-react";
 
 import PricingCard from "./PricingCard";
 
 interface PricingHeaderProps {
   onSave: () => void;
+  saving?: boolean;
 }
 
 export default function PricingHeader({
   onSave,
+  saving = false,
 }: PricingHeaderProps) {
   return (
     <PricingCard className="p-4">
@@ -57,8 +59,12 @@ export default function PricingHeader({
             onClick={onSave}
             className="inline-flex h-10 items-center gap-2 rounded-xl bg-navy px-5 font-heading text-sm font-semibold leading-5 text-white shadow-md transition hover:bg-navy/90"
           >
-            <Save size={16} />
-            Save Changes
+            {saving ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : (
+              <Save size={16} />
+            )}
+            {saving ? "Saving..." : "Save Changes"}
           </button>
         </div>
       </div>

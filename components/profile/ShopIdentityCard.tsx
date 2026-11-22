@@ -10,8 +10,17 @@ import {
 import Badge from "@/components/ui/Badge";
 import CardHeader from "./CardHeader";
 import ProfileField from "./ProfileField";
+import type { ProfileChangeHandler, ShopProfile } from "./types";
 
-export default function ShopIdentityCard() {
+interface ShopIdentityCardProps {
+  value: ShopProfile;
+  onChange: ProfileChangeHandler;
+}
+
+export default function ShopIdentityCard({
+  value,
+  onChange,
+}: ShopIdentityCardProps) {
   return (
     <section className="dashboard-card p-6">
       <CardHeader
@@ -24,24 +33,30 @@ export default function ShopIdentityCard() {
             className="gap-1.5 px-3 py-1 text-[11px] leading-3.5 text-[#00201D]"
           >
             <BadgeCheck size={16} className="text-[#00312C]" />
-            Verified Partner
+            Verification pending
           </Badge>
         }
       />
 
-      <div className="mt-4 2xl:mt-6 space-y-4 2xl:space-y-5">
-        <div className="grid gap-4 sm:grid-cols-2 ">
+      <div className="mt-4 space-y-4 2xl:mt-6 2xl:space-y-5">
+        <div className="grid gap-4 sm:grid-cols-2">
           <ProfileField
             label="Shop Name"
             required
             icon={Store}
-            defaultValue="Tamil Printers"
+            name="shopName"
+            value={value.shopName}
+            onChange={(event) => onChange("shopName", event.target.value)}
           />
           <ProfileField
             label="Shop Registration / License Code"
             required
             icon={FileText}
-            defaultValue="XMX-SHOP-44091"
+            name="registrationCode"
+            value={value.registrationCode}
+            onChange={(event) =>
+              onChange("registrationCode", event.target.value)
+            }
           />
         </div>
 
@@ -50,22 +65,22 @@ export default function ShopIdentityCard() {
             label="Owner / Proprietor Name"
             required
             icon={User}
-            defaultValue="Saravanan K"
+            name="ownerName"
+            value={value.ownerName}
+            onChange={(event) => onChange("ownerName", event.target.value)}
             hint="Authorized Signatory / Proprietor"
           />
           <ProfileField
             label="Owner Email Address"
             required
             icon={Mail}
-            defaultValue="saravanan.tamilprinters@gmail.com"
+            name="ownerEmail"
+            type="email"
+            value={value.ownerEmail}
+            onChange={(event) => onChange("ownerEmail", event.target.value)}
             hint="Used for monthly settlement invoices and legal notices"
             className="text-xs"
-            trailing={
-              <BadgeCheck
-                size={15}
-                className="text-brand-strong"
-              />
-            }
+            trailing={<BadgeCheck size={15} className="text-brand-strong" />}
           />
         </div>
 
@@ -74,14 +89,18 @@ export default function ShopIdentityCard() {
             label="Primary Contact Phone"
             required
             icon={Phone}
-            defaultValue="+91 9092579460"
+            name="contactPhone"
+            value={value.contactPhone}
+            onChange={(event) => onChange("contactPhone", event.target.value)}
             hint="Direct dispatch alerts & instant SMS notifications"
           />
           <ProfileField
             label="Shop Landline / Backup Contact"
             icon={Phone}
-            defaultValue="0435 242 1108"
-            hint="Customer escalation & store reception desk"
+            name="backupPhone"
+            value={value.backupPhone}
+            onChange={(event) => onChange("backupPhone", event.target.value)}
+            hint="Optional · Customer escalation & store reception desk"
           />
         </div>
       </div>

@@ -1,3 +1,5 @@
+import type { ShopOverview, VerificationStatus } from "@/types/shop";
+
 export type OnboardingStageStatus =
   | "completed"
   | "current"
@@ -12,26 +14,67 @@ export interface OnboardingStage {
   href: string;
 }
 
-export const defaultShopOnboardingStages: OnboardingStage[] = [
-  {
-    key: "register",
-    label: "Register",
-    status: "completed",
-    statusText: "Account created",
-    href: "/",
-  },
-  {
-    key: "profile",
-    label: "Profile setup",
-    status: "current",
-    statusText: "Complete shop details",
-    href: "/profile",
-  },
-  {
-    key: "pricing",
-    label: "Print service & pricing",
-    status: "locked",
-    statusText: "Add print rates",
-    href: "/pricing",
-  },
-];
+function verificationStage(
+  status: VerificationStatus,
+  ready: boolean
+): OnboardingStage {
+  if (status === "approved") {
+    return {
+      key: "verification",
+      label: "Verification & approval",
+      status: "completed",
+      statusText: "Shop is live",
+      href: "/profile#verification",
+    };
+  }
+
+  if (status === "rejected") {
+    return {
+      key: "verification",
+      label: "Verification & approval",
+      status: "rejected",
+      statusText: "Needs attention",
+      href: "/profile#verification",
+    };
+  }
+
+  return {
+    key: "verification",
+    label: "Verification & approval",
+    status: ready ? "current" : "locked",
+    statusText: "Awaiting admin review",
+    href: "/profile#verification",
+  };
+}
+
+export function buildOnboardingStages(
+  overview: ShopOverview | null
+): OnboardingStage[] {
+  const profileCompleted = overview?.profileCompleted ?? false;
+  const hasPricing = overview?.hasPricing ?? false;
+
+  return [
+    {
+      key: "profile",
+      label: "Profile setup",
+      status: profileCompleted ? "completed" : "current",
+      statusText: profileCompleted ? "Shop details saved" : "Add shop details",
+      href: "/profile",
+    },
+    {
+      key: "pricing",
+      label: "Print service & pricing",
+      status: hasPricing
+        ? "completed"
+        : profileCompleted
+          ? "current"
+          : "locked",
+      statusText: hasPricing ? "Rates configured" : "Configure print rates",
+      href: "/pricing",
+    },
+    verificationStage(
+      overview?.verificationStatus ?? "pending",
+      profileCompleted && hasPricing
+    ),
+  ];
+}

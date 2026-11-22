@@ -1,9 +1,15 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { FormEvent } from "react";
+import type { ShopOverview, ShopProfile, WithdrawalAccount } from "@/types/shop";
 
 import BankingCard from "./BankingCard";
+import {
+  defaultImages,
+  defaultPayment,
+  defaultShopProfile,
+} from "./defaults";
 import FulfillmentCard from "./FulfillmentCard";
 import OperatingHoursCard from "./OperatingHoursCard";
 import PaymentOptionsCard from "./PaymentOptionsCard";
@@ -13,98 +19,165 @@ import ShopImagesCard from "./ShopImagesCard";
 import ShopProfileHeader from "./ShopProfileHeader";
 import ShopProfileSaveBar from "./ShopProfileSaveBar";
 import type {
-  FulfillmentOptions,
-  PaymentOptions,
+  ProfileChangeHandler,
   ShopImages,
+  VerificationStatus,
 } from "./types";
-
-const initialPayment: PaymentOptions = {
-  fullOnline: true,
-  advanceOnline: true,
-  pickup: true,
-  cod: true,
-};
-
-const initialFulfillment: FulfillmentOptions = {
-  pickup: true,
-  delivery: true,
-};
-
-const initialImages: ShopImages = {
-  front: true,
-  interior: true,
-};
+import VerificationStatusCard from "./VerificationStatusCard";
 
 export default function ShopProfileForm() {
-  const formRef = useRef<HTMLFormElement>(null);
+  const [profile, setProfile] = useState<ShopProfile>(defaultShopProfile);
+  const [savedProfile, setSavedProfile] = useState(defaultShopProfile);
+  const [accounts, setAccounts] = useState<WithdrawalAccount[]>([]);
+  const [verificationStatus, setVerificationStatus] =
+    useState<VerificationStatus>("pending");
   const [dirty, setDirty] = useState(false);
-  const [lastSaved, setLastSaved] = useState("Last saved 2 min ago");
-  const [payment, setPayment] = useState(initialPayment);
-  const [fulfillment, setFulfillment] = useState(initialFulfillment);
-  const [images, setImages] = useState(initialImages);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+  const [lastSaved, setLastSaved] = useState("Not saved yet");
 
-  const markDirty = () => setDirty(true);
+  useEffect(() => {
+    let active = true;
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setDirty(false);
-    setLastSaved("Just now");
+    async function loadShop() {
+      try {
+        const response = await fetch("/api/shop");
+
+        if (!response.ok) {
+          throw new Error("Could not load your shop profile.");
+        }
+
+        const data = (await response.json()) as ShopOverview;
+
+        if (!active) {
+          return;
+        }
+
+        setProfile(data.profile);
+        setSavedProfile(data.profile);
+        setAccounts(data.withdrawalAccounts);
+        setVerificationStatus(data.verificationStatus);
+        setLastSaved("All changes saved");
+      } catch (loadError) {
+        if (active) {
+          setError(
+            loadError instanceof Error
+              ? loadError.message
+              : "Could not load your shop profile."
+          );
+        }
+      }
+    }
+
+    loadShop();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const handleProfileChange: ProfileChangeHandler = useCallback(
+    (field, value) => {
+      setProfile((current) => ({ ...current, [field]: value }));
+      setDirty(true);
+    },
+    []
+  );
+
+  const handlePaymentChange = (nextPayment: typeof profile.payment) => {
+    handleProfileChange("payment", nextPayment);
   };
 
-  const handleDiscard = () => {
-    formRef.current?.reset();
-    setPayment(initialPayment);
-    setFulfillment(initialFulfillment);
-    setImages(initialImages);
-    setDirty(false);
-    setLastSaved("Last saved 2 min ago");
-  };
-
-  const handlePaymentChange = (nextPayment: PaymentOptions) => {
-    setPayment(nextPayment);
-    markDirty();
-  };
-
-  const handleFulfillmentChange = (
-    nextFulfillment: FulfillmentOptions
-  ) => {
-    setFulfillment(nextFulfillment);
-    markDirty();
+  const handleAdvancePercentChange = (value: number) => {
+    handleProfileChange("advancePercent", value);
   };
 
   const handleImagesChange = (nextImages: ShopImages) => {
-    setImages(nextImages);
-    markDirty();
+    handleProfileChange("images", nextImages);
+  };
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!profile.images?.frontImage || !profile.images?.interiorImage) {
+      setError("Upload both shop front and interior images before saving.");
+      return;
+    }
+
+    setSaving(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/shop", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(profile),
+      });
+      const data = (await response.json()) as {
+        profile?: ShopProfile;
+        error?: string;
+      };
+
+      if (!response.ok || !data.profile) {
+        throw new Error(data.error ?? "Could not save your shop profile.");
+      }
+
+      setProfile(data.profile);
+      setSavedProfile(data.profile);
+      setDirty(false);
+      setLastSaved("Just now");
+    } catch (saveError) {
+      setError(
+        saveError instanceof Error
+          ? saveError.message
+          : "Could not save your shop profile."
+      );
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  const handleDiscard = () => {
+    setProfile(savedProfile);
+    setDirty(false);
+    setError("");
   };
 
   return (
     <form
-      ref={formRef}
-      onChange={markDirty}
       onSubmit={handleSubmit}
       className="mx-auto w-full max-w-7xl space-y-2 p-2 sm:px-2 sm:py-3 xl:space-y-2.5 xl:py-3 2xl:px-5 2xl:py-4"
     >
-      <ShopProfileHeader dirty={dirty} />
+      <ShopProfileHeader />
+
+      {error ? (
+        <p
+          role="alert"
+          className="rounded-xl bg-danger-soft px-4 py-3 text-xs font-semibold text-danger-ink"
+        >
+          {error}
+        </p>
+      ) : null}
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
         <div className="space-y-6">
-          <ShopIdentityCard />
-          <OperatingHoursCard />
-          <ShopAddressCard />
-          <BankingCard />
+          <ShopIdentityCard value={profile} onChange={handleProfileChange} />
+          <OperatingHoursCard value={profile} onChange={handleProfileChange} />
+          <ShopAddressCard value={profile} onChange={handleProfileChange} />
+          <BankingCard accounts={accounts} onChange={setAccounts} />
+          <VerificationStatusCard status={verificationStatus} />
         </div>
 
         <div className="space-y-6">
           <PaymentOptionsCard
-            value={payment}
+            value={profile.payment ?? defaultPayment}
+            advancePercent={profile.advancePercent}
             onChange={handlePaymentChange}
+            onAdvancePercentChange={handleAdvancePercentChange}
           />
-          <FulfillmentCard
-            value={fulfillment}
-            onChange={handleFulfillmentChange}
-          />
+          <FulfillmentCard value={profile} onChange={handleProfileChange} />
           <ShopImagesCard
-            value={images}
+            value={profile.images ?? defaultImages}
             onChange={handleImagesChange}
           />
         </div>
@@ -113,6 +186,7 @@ export default function ShopProfileForm() {
       <ShopProfileSaveBar
         dirty={dirty}
         lastSaved={lastSaved}
+        saving={saving}
         onDiscard={handleDiscard}
       />
     </form>

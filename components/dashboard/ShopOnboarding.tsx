@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   CheckCircle2,
   Loader2,
@@ -8,9 +11,10 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import type { ShopOverview } from "@/types/shop";
 
 import {
-  defaultShopOnboardingStages,
+  buildOnboardingStages,
   type OnboardingStage,
   type OnboardingStageStatus,
 } from "./shop-onboarding-data";
@@ -58,9 +62,42 @@ function StageIcon({ status }: { status: OnboardingStageStatus }) {
 }
 
 export default function ShopOnboarding({
-  stages = defaultShopOnboardingStages,
+  stages: stagesProp,
   className,
 }: ShopOnboardingProps) {
+  const [fetchedStages, setFetchedStages] = useState<OnboardingStage[]>(() =>
+    buildOnboardingStages(null)
+  );
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadProgress() {
+      try {
+        const response = await fetch("/api/shop");
+
+        if (!response.ok) {
+          return;
+        }
+
+        const data = (await response.json()) as ShopOverview;
+
+        if (active) {
+          setFetchedStages(buildOnboardingStages(data));
+        }
+      } catch {
+        return;
+      }
+    }
+
+    loadProgress();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const stages = stagesProp ?? fetchedStages;
   const completedCount = stages.filter(
     (stage) => stage.status === "completed"
   ).length;

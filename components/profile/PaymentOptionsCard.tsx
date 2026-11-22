@@ -7,12 +7,16 @@ import type { PaymentOptions } from "./types";
 
 interface PaymentOptionsCardProps {
   value: PaymentOptions;
+  advancePercent: number;
   onChange: (value: PaymentOptions) => void;
+  onAdvancePercentChange: (value: number) => void;
 }
 
 export default function PaymentOptionsCard({
   value,
+  advancePercent,
   onChange,
+  onAdvancePercentChange,
 }: PaymentOptionsCardProps) {
   const toggle = (key: keyof PaymentOptions) => {
     onChange({ ...value, [key]: !value[key] });
@@ -25,10 +29,7 @@ export default function PaymentOptionsCard({
         title="Payment Options"
         subtitle="Select at least one payment method."
         badge={
-          <Badge
-            tone="danger"
-            className="text-[11px] leading-3.5"
-          >
+          <Badge tone="danger" className="text-[11px] leading-3.5">
             Required for Setup
           </Badge>
         }
@@ -66,13 +67,10 @@ export default function PaymentOptionsCard({
       </div>
 
       <div className="mt-3 flex items-start gap-2.5 rounded-lg bg-lilac p-2">
-        <Info
-          size={15}
-          className="mt-0.5 shrink-0 text-brand-strong"
-        />
+        <Info size={15} className="mt-0.5 shrink-0 text-brand-strong" />
         <p className="text-[11px] font-semibold leading-3.5 text-muted">
-          When “Pay advance online” is on, customers pay this percentage
-          up front and the rest at the shop.
+          When “Pay advance online” is on, customers pay this percentage up
+          front and the rest at the shop.
         </p>
       </div>
 
@@ -85,8 +83,15 @@ export default function PaymentOptionsCard({
         </label>
         <input
           id="advance-percent"
+          name="advancePercent"
           type="number"
-          defaultValue={50}
+          required
+          min={0}
+          max={100}
+          value={advancePercent}
+          onChange={(event) =>
+            onAdvancePercentChange(Number(event.target.value))
+          }
           className="h-9 w-32 rounded-lg bg-lilac px-4 text-sm text-ink shadow-sm outline-none focus:ring-2 focus:ring-brand/20"
         />
       </div>

@@ -1,16 +1,15 @@
-export interface PaymentOptions {
-  fullOnline: boolean;
-  advanceOnline: boolean;
-  pickup: boolean;
-  cod: boolean;
-}
+import type { ShopProfile } from "@/types/shop";
 
-export interface FulfillmentOptions {
-  pickup: boolean;
-  delivery: boolean;
-}
+export type {
+  FulfillmentOptions,
+  PaymentOptions,
+  ShopImages,
+  ShopProfile,
+  VerificationStatus,
+  WeekDay,
+  WithdrawalAccount,
+} from "@/types/shop";
 
-export interface ShopImages {
-  front: boolean;
-  interior: boolean;
+export interface ProfileChangeHandler {
+  <K extends keyof ShopProfile>(field: K, value: ShopProfile[K]): void;
 }

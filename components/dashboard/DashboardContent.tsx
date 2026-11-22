@@ -18,7 +18,7 @@ export default function DashboardContent() {
     <div className="mx-auto w-full max-w-7xl space-y-3 p-3 sm:px-2 sm:py-3 xl:space-y-4 xl:py-3 2xl:px-5 2xl:py-4">
       <Header onMenuClick={openSidebar} />
 
-      {/* <ShopOnboarding /> */}
+      <ShopOnboarding />
 
       <StatsCards />
 

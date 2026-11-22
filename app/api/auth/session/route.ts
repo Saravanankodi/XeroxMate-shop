@@ -6,6 +6,7 @@ import {
   SESSION_COOKIE_NAME,
   SESSION_MAX_AGE_MS,
 } from "@/lib/firebase/constants";
+import { ensureShopDocument } from "@/lib/shop/server";
 
 interface SessionBody {
   idToken?: string;
@@ -46,6 +47,17 @@ export async function POST(request: Request) {
     const sessionCookie = await auth.createSessionCookie(body.idToken, {
       expiresIn: SESSION_MAX_AGE_MS,
     });
+
+    try {
+      await ensureShopDocument({
+        uid: decoded.uid,
+        name: displayName ?? decoded.name,
+        email: decoded.email,
+        phone,
+      });
+    } catch (error) {
+      console.error("Failed to initialize shop document", error);
+    }
 
     const cookieStore = await cookies();
     cookieStore.set(SESSION_COOKIE_NAME, sessionCookie, {
