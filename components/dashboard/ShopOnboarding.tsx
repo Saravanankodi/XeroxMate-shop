@@ -68,6 +68,8 @@ export default function ShopOnboarding({
   const [fetchedStages, setFetchedStages] = useState<OnboardingStage[]>(() =>
     buildOnboardingStages(null)
   );
+  const [isApproved, setIsApproved] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
@@ -83,10 +85,15 @@ export default function ShopOnboarding({
         const data = (await response.json()) as ShopOverview;
 
         if (active) {
+          setIsApproved(data.verificationStatus === "approved");
           setFetchedStages(buildOnboardingStages(data));
         }
       } catch {
         return;
+      } finally {
+        if (active) {
+          setIsLoading(false);
+        }
       }
     }
 
@@ -96,6 +103,10 @@ export default function ShopOnboarding({
       active = false;
     };
   }, []);
+
+  if (isApproved || (isLoading && !stagesProp)) {
+    return null;
+  }
 
   const stages = stagesProp ?? fetchedStages;
   const completedCount = stages.filter(

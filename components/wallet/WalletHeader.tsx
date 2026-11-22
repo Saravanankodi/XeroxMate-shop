@@ -1,9 +1,19 @@
+"use client";
+
 import {
   ArrowUpRight,
   Download,
 } from "lucide-react";
+import { useCallback, useState } from "react";
+
+import WithdrawalDialog from "./WithdrawalDialog";
 
 export default function WalletHeader() {
+  const [isWithdrawalOpen, setIsWithdrawalOpen] = useState(false);
+  const closeWithdrawal = useCallback(() => {
+    setIsWithdrawalOpen(false);
+  }, []);
+
   return (
     <header className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
       <div className="max-w-[502px]">
@@ -35,15 +45,16 @@ export default function WalletHeader() {
           </button>
           <button
             type="button"
+            onClick={() => setIsWithdrawalOpen(true)}
             className="inline-flex h-9 w-fit items-center gap-1 rounded-xl bg-brand px-4 font-heading text-base font-semibold leading-4 text-white shadow-md transition hover:bg-brand-strong"
           >
             <ArrowUpRight size={14} />
             Request Withdrawal
           </button>
         </div>
-
-        
       </div>
+
+      <WithdrawalDialog open={isWithdrawalOpen} onClose={closeWithdrawal} />
     </header>
   );
 }
