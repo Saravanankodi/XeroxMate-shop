@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import AddPricingItemDialog from "./AddPricingItemDialog";
 import FinishingPricingSection from "./FinishingPricingSection";
 import PaperPricingSection from "./PaperPricingSection";
 import PricingHeader from "./PricingHeader";
@@ -9,7 +10,7 @@ import {
   initialFinishingItems,
   initialPaperItems,
 } from "./pricing-data";
-import type { FinishingItem, PaperItem } from "./types";
+import type { FinishingItem, FinishingUnit, PaperItem } from "./types";
 
 export default function PricingEngine() {
   const [paperItems, setPaperItems] =
@@ -19,6 +20,8 @@ export default function PricingEngine() {
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [addPaperOpen, setAddPaperOpen] = useState(false);
+  const [addFinishingOpen, setAddFinishingOpen] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -87,18 +90,19 @@ export default function PricingEngine() {
     setDirty(true);
   };
 
-  const handleAddPaper = () => {
+  const handleAddPaper = (name: string) => {
     setPaperItems((items) => [
       ...items,
       {
-        id: `paper-${Date.now()}`,
-        name: `New Paper Type ${items.length + 1}`,
+        id: `paper-${crypto.randomUUID()}`,
+        name,
         active: false,
         bwPrice: "0",
         colorPrice: "0",
       },
     ]);
     setDirty(true);
+    setAddPaperOpen(false);
   };
 
   const handleFinishingToggle = (id: string) => {
@@ -117,18 +121,22 @@ export default function PricingEngine() {
     setDirty(true);
   };
 
-  const handleAddFinishing = () => {
+  const handleAddFinishing = (
+    name: string,
+    unit: FinishingUnit = "document set"
+  ) => {
     setFinishingItems((items) => [
       ...items,
       {
-        id: `finishing-${Date.now()}`,
-        name: `New Finishing Option ${items.length + 1}`,
-        unit: "document set",
+        id: `finishing-${crypto.randomUUID()}`,
+        name,
+        unit,
         active: false,
         price: "0",
       },
     ]);
     setDirty(true);
+    setAddFinishingOpen(false);
   };
 
   async function handleSave() {
@@ -181,17 +189,40 @@ export default function PricingEngine() {
             items={paperItems}
             onToggle={handlePaperToggle}
             onPriceChange={handlePaperPriceChange}
-            onAdd={handleAddPaper}
+            onAdd={() => setAddPaperOpen(true)}
           />
 
           <FinishingPricingSection
             items={finishingItems}
             onToggle={handleFinishingToggle}
             onPriceChange={handleFinishingPriceChange}
-            onAdd={handleAddFinishing}
+            onAdd={() => setAddFinishingOpen(true)}
           />
         </div>
       </div>
+
+      {addPaperOpen ? (
+        <AddPricingItemDialog
+          title="Add paper type"
+          description="Add a new paper type to your pricing list."
+          nameLabel="Paper type name"
+          namePlaceholder="e.g. A4 Premium"
+          onSubmit={handleAddPaper}
+          onClose={() => setAddPaperOpen(false)}
+        />
+      ) : null}
+
+      {addFinishingOpen ? (
+        <AddPricingItemDialog
+          title="Add finishing option"
+          description="Add a new binding or finishing service."
+          nameLabel="Finishing option name"
+          namePlaceholder="e.g. Spiral Binding"
+          unitOptions={["document set", "page"] as const}
+          onSubmit={handleAddFinishing}
+          onClose={() => setAddFinishingOpen(false)}
+        />
+      ) : null}
     </div>
   );
 }

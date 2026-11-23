@@ -1,12 +1,13 @@
-import type { InputHTMLAttributes } from "react";
+import type { InputHTMLAttributes, ReactNode } from "react";
 import { useId } from "react";
 
 import { cn } from "@/lib/utils";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   hint?: string;
   error?: string;
+  trailing?: ReactNode;
 }
 
 export default function Input({
@@ -15,6 +16,7 @@ export default function Input({
   error,
   id,
   className,
+  trailing,
   ...props
 }: InputProps) {
   const generatedId = useId();
@@ -24,6 +26,21 @@ export default function Input({
     : hint
       ? `${inputId}-hint`
       : undefined;
+
+  const input = (
+    <input
+      id={inputId}
+      aria-invalid={error ? true : undefined}
+      aria-describedby={describedBy}
+      className={cn(
+        "w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-sm text-ink shadow-[0_1px_2px_rgba(0,0,0,0.03)] outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:cursor-not-allowed disabled:bg-lilac disabled:text-muted",
+        error && "border-danger focus:border-danger focus:ring-danger/20",
+        trailing ? "pr-11" : undefined,
+        className
+      )}
+      {...props}
+    />
+  );
 
   return (
     <div className="space-y-1.5">
@@ -36,17 +53,16 @@ export default function Input({
         </label>
       ) : null}
 
-      <input
-        id={inputId}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={describedBy}
-        className={cn(
-          "w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-sm text-ink shadow-[0_1px_2px_rgba(0,0,0,0.03)] outline-none transition placeholder:text-muted/60 focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:cursor-not-allowed disabled:bg-lilac disabled:text-muted",
-          error && "border-danger focus:border-danger focus:ring-danger/20",
-          className
-        )}
-        {...props}
-      />
+      {trailing ? (
+        <div className="relative">
+          {input}
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+            {trailing}
+          </div>
+        </div>
+      ) : (
+        input
+      )}
 
       {error ? (
         <p id={`${inputId}-error`} className="text-xs font-medium text-danger">

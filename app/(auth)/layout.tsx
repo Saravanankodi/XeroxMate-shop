@@ -1,6 +1,7 @@
 import { ClipboardList, SlidersHorizontal, Wallet, Zap } from "lucide-react";
 
 import { Label, ServiceCard } from "@/components/ui";
+import Image from "next/image";
 
 const services = [
   {
@@ -26,13 +27,19 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex min-h-screen w-full flex-col items-center justify-center gap-8 bg-surface p-5 lg:flex-row lg:gap-10 lg:py-10">
+    <section className="sm:flex min-h-screen w-full flex-col items-center justify-center gap-8 bg-surface p-3 sm:p-5 lg:flex-row lg:gap-10 lg:py-10">
+      <div className=" relative sm:hidden max-w-57 mx-auto min-h-0 h-19.5">
+        <Image 
+          src={'/images/xeroxmate-logo.png'}
+          alt="xeroxmate"
+          fill />
+      </div>
       <div className="w-full max-w-2xl hidden sm:block space-y-5 lg:flex-1">
         <Label dot dotColor="bg-brand">
           Tamil Nadu&apos;s Digital Printing Partner Network
         </Label>
 
-        <h2 className="font-heading text-4xl font-extrabold leading-tight sm:text-5xl lg:text-[56px] lg:leading-[62px]">
+        <h2 className="font-heading text-4xl font-extrabold leading-tight sm:text-5xl lg:text-[56px] lg:leading-15.5">
           Run your print shop.
           <span className="block text-brand">Skip the counter chaos.</span>
         </h2>

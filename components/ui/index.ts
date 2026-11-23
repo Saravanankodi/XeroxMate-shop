@@ -5,6 +5,7 @@ export { default as Card } from "./Card";
 export { default as Checkbox } from "./Checkbox";
 export { default as IconTile } from "./IconTile";
 export { default as Input } from "./Input";
+export { default as PasswordInput } from "./PasswordInput";
 export { default as Label } from "./Label";
 export { default as SectionCard } from "./SectionCard";
 export { default as ServiceCard } from "./ServiceCard";

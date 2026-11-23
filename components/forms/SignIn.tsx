@@ -10,10 +10,11 @@ import {
   type User,
 } from "firebase/auth";
 
-import { Button, Input, Card } from "@/components/ui";
+import { Button, Input, Card, PasswordInput } from "@/components/ui";
 import { getFirebaseAuth } from "@/lib/firebase/client";
 import { getFirebaseAuthErrorMessage } from "@/lib/firebase/errors";
 import { createServerSession } from "@/lib/firebase/session-client";
+import { FcGoogle } from "react-icons/fc";
 
 function getRedirectPath(value: string | null) {
   if (value && value.startsWith("/") && !value.startsWith("//")) {
@@ -80,7 +81,7 @@ export default function SignIn() {
     <main className="flex w-full items-center justify-center p-4">
       <Card padding="lg" className="w-full max-w-lg border border-line">
         <h1 className="font-heading text-2xl font-bold text-navy">
-          Merchant Sign In
+          Shop Sign In
         </h1>
 
         <p className="mb-6 mt-2 text-sm text-muted">
@@ -90,7 +91,6 @@ export default function SignIn() {
         <form className="space-y-5" onSubmit={submit}>
           <Input
             label="Email Address"
-            name="email"
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -99,10 +99,8 @@ export default function SignIn() {
             required
           />
 
-          <Input
+          <PasswordInput
             label="Password"
-            name="password"
-            type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Enter your password"
@@ -120,7 +118,7 @@ export default function SignIn() {
           ) : null}
 
           <Button type="submit" fullWidth loading={loading}>
-            Sign In to Merchant Console
+            Sign In to Shop Console
           </Button>
 
           <Button
@@ -130,6 +128,7 @@ export default function SignIn() {
             disabled={loading}
             onClick={continueWithGoogle}
           >
+            <FcGoogle className="h-5 w-5"/>
             Continue with Google
           </Button>
         </form>
@@ -140,7 +139,7 @@ export default function SignIn() {
             href="/sign-up"
             className="font-semibold text-brand hover:underline"
           >
-            Create a merchant account
+            Create a shop account
           </Link>
         </p>
       </Card>

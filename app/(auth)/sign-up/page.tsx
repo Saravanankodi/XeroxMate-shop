@@ -9,7 +9,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-import { Button, Card, Checkbox, Input } from "@/components/ui";
+import { Button, Card, Checkbox, Input, PasswordInput } from "@/components/ui";
 import { getFirebaseAuth } from "@/lib/firebase/client";
 import { getFirebaseAuthErrorMessage } from "@/lib/firebase/errors";
 import { createServerSession } from "@/lib/firebase/session-client";
@@ -71,20 +71,19 @@ export default function SignUpPage() {
   }
 
   return (
-    <main className="flex w-full items-center justify-center p-4">
+    <main className="flex w-full items-center justify-center sm:p-4">
       <Card padding="lg" className="w-full max-w-lg border border-line">
-        <h1 className="font-heading text-2xl font-bold text-navy">
-          Create Your Merchant Account
+        <h1 className="font-heading text-xl sm:text-2xl font-bold text-navy">
+          Create Your Shop Account
         </h1>
 
-        <p className="mb-6 mt-2 text-sm text-muted">
+        <p className="sm:mb-6 sm:mt-2 mb-3 mt-1 text-xs sm:text-sm text-muted">
           List your print shop, accept orders and settle payments digitally.
         </p>
 
         <form className="space-y-5" onSubmit={submit}>
           <Input
             label="Full Name"
-            name="name"
             value={name}
             onChange={(event) => setName(event.target.value)}
             placeholder="Enter your full name"
@@ -94,7 +93,6 @@ export default function SignUpPage() {
 
           <Input
             label="Email Address"
-            name="email"
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -105,7 +103,6 @@ export default function SignUpPage() {
 
           <Input
             label="Mobile Number"
-            name="phone"
             type="tel"
             inputMode="numeric"
             value={phone}
@@ -115,10 +112,8 @@ export default function SignUpPage() {
             required
           />
 
-          <Input
+          <PasswordInput
             label="Password"
-            name="password"
-            type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Create a password (min. 8 characters)"
@@ -143,7 +138,7 @@ export default function SignUpPage() {
           ) : null}
 
           <Button type="submit" fullWidth loading={loading}>
-            Create Merchant Account
+            Create Shop Account
           </Button>
         </form>
 

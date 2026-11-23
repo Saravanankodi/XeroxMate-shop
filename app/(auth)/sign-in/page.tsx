@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 function SignInFallback() {
   return (
     <main className="flex w-full items-center justify-center p-4">
-      <div className="h-[430px] w-full max-w-lg animate-pulse rounded-3xl bg-slate-100" />
+      <div className="h-107.5 w-full max-w-lg animate-pulse rounded-3xl bg-slate-100" />
     </main>
   );
 }
