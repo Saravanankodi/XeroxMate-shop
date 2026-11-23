@@ -2,6 +2,7 @@ import { formatCurrency, getInitials } from "@/lib/utils";
 import type {
   OrderDetails,
   OrderDocument,
+  OrderDocumentDetail,
   OrderStatus,
   OrderTab,
   PrintSpec,
@@ -22,6 +23,7 @@ export const ORDER_TABS: OrderTab[] = [
 ];
 
 const newOrderDocument: OrderDocument = {
+  id: "doc-1",
   fileName: "SaravananK(UIUX).pdf",
   kind: "PDF",
   sheets: 1,
@@ -91,6 +93,7 @@ export const QUEUE_ORDERS: QueueOrder[] = [
     phone: "+91 98765 43210",
     amount: 3.2,
     document: {
+      id: "doc-1",
       fileName: "Maths-Unit3.pdf",
       kind: "PDF",
       sheets: 4,
@@ -111,6 +114,7 @@ export const QUEUE_ORDERS: QueueOrder[] = [
     phone: "+91 8525913433",
     amount: 0.77,
     document: {
+      id: "doc-1",
       fileName: "Screenshot_2026-10-11",
       kind: "JPG / IMAGE",
       sheets: 1,
@@ -131,6 +135,7 @@ export const QUEUE_ORDERS: QueueOrder[] = [
     phone: "+91 90000 12345",
     amount: 12,
     document: {
+      id: "doc-1",
       fileName: "Project-Report.pdf",
       kind: "PDF",
       sheets: 15,
@@ -151,6 +156,7 @@ export const QUEUE_ORDERS: QueueOrder[] = [
     phone: "+91 91234 56789",
     amount: 4.5,
     document: {
+      id: "doc-1",
       fileName: "Flyer-Draft.png",
       kind: "PNG / IMAGE",
       sheets: 3,
@@ -211,12 +217,18 @@ function buildWorkflow(status: OrderStatus): WorkflowStage[] {
 
 function buildSpecs(document: OrderDocument): PrintSpec[] {
   const copies = document.specs[0] ?? "1 Copy";
+  const printType = document.specs[2] ?? "B&W Laser";
   const sides = document.specs[3] ?? "Single-Sided";
   const paper = document.specs[4] ?? "A4";
 
   return [
     { label: "Paper", value: `${paper} Paper` },
-    { label: "Print type", value: "Black & White" },
+    {
+      label: "Print type",
+      value: printType.toLowerCase().includes("colour")
+        ? "Colour"
+        : "Black & White",
+    },
     {
       label: "Sides",
       value: sides === "Double-Sided" ? "Front & Back" : "Front Only",
@@ -232,9 +244,71 @@ function buildSpecs(document: OrderDocument): PrintSpec[] {
     { label: "Page layout", value: "1 Page / Sheet" },
     { label: "Binding", value: "None" },
     { label: "Extras", value: "None" },
-    { label: "Delivery option", value: "Pickup", },
+    { label: "Delivery option", value: "Pickup" },
   ];
 }
+
+function buildOrderDocuments(
+  orderId: string,
+  primary: OrderDocument
+): OrderDocument[] {
+  const secondPages = Math.max(1, Math.ceil(primary.pages / 2));
+  const paper = primary.specs[4] ?? "A4";
+  const printType = primary.specs[2] ?? "B&W Laser";
+
+  const second: OrderDocument = {
+    id: `${orderId}-doc-2`,
+    fileName: primary.fileName.replace(/(\.[^.]+)?$/, "-notes$1"),
+    kind: primary.kind,
+    sheets: Math.max(1, Math.ceil(primary.sheets / 2)),
+    pages: secondPages,
+    size: "0.9 MB",
+    specs: [
+      "1 Copy",
+      `${secondPages} ${secondPages === 1 ? "Page" : "Pages"}`,
+      printType,
+      "Double-Sided",
+      paper,
+    ],
+    unitPrice: Number((primary.unitPrice * 0.6).toFixed(2)),
+    lineTotal: Number((primary.lineTotal * 0.6).toFixed(2)),
+  };
+
+  const third: OrderDocument = {
+    id: `${orderId}-doc-3`,
+    fileName: "Cover-Page.pdf",
+    kind: "PDF",
+    sheets: 1,
+    pages: 1,
+    size: "0.3 MB",
+    specs: ["1 Copy", "1 Page", "Colour Laser", "Single-Sided", "A4"],
+    unitPrice: 1.2,
+    lineTotal: 1.2,
+  };
+
+  return [primary, second, third];
+}
+
+function buildDocumentDetails(
+  documents: OrderDocument[]
+): OrderDocumentDetail[] {
+  return documents.map((document) => ({
+    document,
+    specs: buildSpecs(document),
+  }));
+}
+
+const baseDocument: OrderDocument = {
+  id: "doc-1",
+  fileName: "Screenshot_2026-10-11",
+  kind: "JPG / IMAGE",
+  sheets: 1,
+  pages: 1,
+  size: "0.8 MB",
+  specs: ["1 Copy", "1 Page", "B&W Laser", "Single-Sided", "A4"],
+  unitPrice: 0.75,
+  lineTotal: 0.77,
+};
 
 const orderDetailsBase: OrderDetails = {
   id: "OMX-2839",
@@ -243,26 +317,11 @@ const orderDetailsBase: OrderDetails = {
   placedAt: "11/10/2028, 5:59:11 pm",
   placedAgo: "2 days ago",
   fastTrack: true,
-  document: {
-    fileName: "Screenshot_2026-10-11",
-    kind: "JPG / IMAGE",
-    sheets: 1,
-    pages: 1,
-    size: "0.8 MB",
-    specs: ["1 Copy", "1 Page", "B&W Laser", "Single-Sided", "A4"],
-    unitPrice: 0.75,
-    lineTotal: 0.77,
-  },
-  specs: buildSpecs({
-    fileName: "Screenshot_2026-10-11",
-    kind: "JPG / IMAGE",
-    sheets: 1,
-    pages: 1,
-    size: "0.8 MB",
-    specs: ["1 Copy", "1 Page", "B&W Laser", "Single-Sided", "A4"],
-    unitPrice: 0.75,
-    lineTotal: 0.77,
-  }),
+  document: baseDocument,
+  documents: buildDocumentDetails(
+    buildOrderDocuments("OMX-2839", baseDocument)
+  ),
+  specs: buildSpecs(baseDocument),
   workflow: buildWorkflow("Ready for Pickup"),
   actions: FULFILLMENT_LABELS.map((label, index) => ({
     label,
@@ -299,7 +358,13 @@ export function getOrderDetails(orderId: string): OrderDetails {
   );
 
   if (!order) {
-    return { ...orderDetailsBase, id: normalized };
+    return {
+      ...orderDetailsBase,
+      id: normalized,
+      documents: buildDocumentDetails(
+        buildOrderDocuments(normalized, baseDocument)
+      ),
+    };
   }
 
   if (order.id === orderDetailsBase.id) {
@@ -331,6 +396,9 @@ export function getOrderDetails(orderId: string): OrderDetails {
     statusLabel: order.status,
     placedAgo: order.placedAgo,
     document: order.document,
+    documents: buildDocumentDetails(
+      buildOrderDocuments(order.id, order.document)
+    ),
     specs: buildSpecs(order.document),
     workflow: buildWorkflow(order.status),
     actions: FULFILLMENT_LABELS.map((label, index) => ({

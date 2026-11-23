@@ -3,11 +3,10 @@ import type { Metadata } from "next";
 import BillingEarnings from "@/components/orders/BillingEarnings";
 import CounterHandover from "@/components/orders/CounterHandover";
 import CustomerDetails from "@/components/orders/CustomerDetails";
-import DocumentPreview from "@/components/orders/DocumentPreview";
 import FulfillmentActions from "@/components/orders/FulfillmentActions";
 import OrderDetailsHeader from "@/components/orders/OrderDetailsHeader";
+import OrderDocumentPanel from "@/components/orders/OrderDocumentPanel";
 import PaymentCollection from "@/components/orders/PaymentCollection";
-import PrintSpecification from "@/components/orders/PrintSpecification";
 import ProductionWorkflow from "@/components/orders/ProductionWorkflow";
 import { getOrderDetails, QUEUE_ORDERS } from "@/lib/orders";
 
@@ -40,9 +39,7 @@ export default async function OrderDetailsPage({
 
       <div className="grid grid-cols-1 gap-4 sm:gap-5 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] 2xl:gap-6">
         <div className="space-y-4 sm:space-y-5">
-          <DocumentPreview document={order.document} />
-
-          <PrintSpecification specs={order.specs} />
+          <OrderDocumentPanel documents={order.documents} />
         </div>
 
         <div className="space-y-4 sm:space-y-5">

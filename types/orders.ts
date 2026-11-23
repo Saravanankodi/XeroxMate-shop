@@ -12,6 +12,7 @@ export interface OrderTab {
 }
 
 export interface OrderDocument {
+  id: string;
   fileName: string;
   kind: string;
   sheets: number;
@@ -39,6 +40,11 @@ export interface PrintSpec {
   label: string;
   value: string;
   hint?: string;
+}
+
+export interface OrderDocumentDetail {
+  document: OrderDocument;
+  specs: PrintSpec[];
 }
 
 export interface WorkflowStage {
@@ -83,6 +89,7 @@ export interface OrderDetails {
   placedAgo: string;
   fastTrack: boolean;
   document: OrderDocument;
+  documents: OrderDocumentDetail[];
   specs: PrintSpec[];
   workflow: WorkflowStage[];
   actions: FulfillmentStep[];
